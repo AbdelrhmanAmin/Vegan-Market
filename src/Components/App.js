@@ -1,34 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
+import Signup from './Signup';
+import Login from './Login';
+import ProtectedRoute from './ProtectedRoute';
+import decode from 'jwt-decode';
 
-class App extends React.Component {
-  componentDidMount = () => {
-    fetch(`${process.env.REACT_APP_API}/users/2`)
-      .then(res => res.json())
-      .then(user => document.getElementById('name').innerHTML = user.name)
-  };
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <div id='name'></div>
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-        </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-        </a>
-        </header>
-      </div>
-    );
+const token = localStorage.getItem('token');
+if (token) {
+  let data = decode(token);
+  let exp = data.exp * 1000
+  if (new Date(exp) <= new Date()) {
+    localStorage.removeItem('token')
+    data = null;
+    exp = null;
   }
+}
+
+function App() {
+  return (
+    <div>
+      <Router>
+        <Switch>
+          <ProtectedRoute path='/' exact />
+          <Route path='/Signup' exact component={Signup} />
+          <Route path='/Login' exact component={Login} />
+        </Switch>
+      </Router>
+    </div>
+  );
 }
 
 export default App;
