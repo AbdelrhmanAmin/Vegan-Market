@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { createUser } from '../Actions'
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 const Signup = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState(0);
+  const history = useHistory();
+  const dispatch = useDispatch();
   const handleChange = (e) => {
     let target = e.target.name
     let val = e.target.value
@@ -19,28 +24,10 @@ const Signup = () => {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    fetch(`${process.env.REACT_APP_API}/users`, {
-      method: 'post',
-      body: JSON.stringify({ name, email, password }),
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    }).then((res) => res.json())
-      .then((response) => {
-        console.log(response)
-        let parent = document.querySelector('.errors');
-        parent.innerHTML = ''
-        if (response.user) {
-          localStorage.setItem('token', response.user.token)
-        }
-        if (response.errors) {
-          for (let err in response.errors) {
-            console.log(response.errors)
-            let child = document.createElement('p');
-            child.style.color = 'red';
-            child.innerHTML = `${err} ${response.errors[err][0]}`
-            parent.appendChild(child)
-          }
-        }
-      })
+    dispatch(createUser(name, email, password));
+    setTimeout(() => {
+      history.push('/');
+    }, 2500);
   }
   return (
     <div>
