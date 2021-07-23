@@ -51,6 +51,9 @@
 .product-desc-div a:hover {
   text-decoration: underline;
 }
+.sign-out {
+  background: none !important;
+}
 .product-desc-div span {
   margin: 0 0 10px 0;
 }
@@ -66,4 +69,17 @@
   font-weight: 600;
   text-transform: uppercase;
   font-family: 'Orbitron', sans-serif;
+}
+
+.nav-flex {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.nav-flex-right {
+  display: flex;
+  align-items: center;
+}
+.nav-flex-right a {
+  margin: 0px 30px;
 }

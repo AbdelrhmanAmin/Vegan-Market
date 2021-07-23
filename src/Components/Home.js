@@ -1,21 +1,35 @@
 import React, { useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { fetchOrders, fetchProducts, logOut, createOrder } from '../Actions'
+import { FaCartArrowDown } from "react-icons/fa";
+import { GoSignOut } from "react-icons/go";
 import './home.css';
 import {
-  Link
+  Link, useHistory
 } from 'react-router-dom';
+import logo from '../assets/logo.png'
+
 const Home = ({ currentUser, cart, products }) => {
   const dispatch = useDispatch()
+  const history = useHistory()
   useEffect(() => {
     dispatch(fetchOrders(currentUser.id))
     dispatch(fetchProducts())
   }, [currentUser])
   return (
     <div>
-      <h1>Hello, {currentUser.name}.</h1>
-      <Link to='/cart'>Cart</Link> <br></br>
-      <button onClick={() => dispatch(logOut())}>Logout</button>
+      <div className='nav-flex'>
+        <div>
+          <Link to='/'><img src={logo} width='75' height='75' alt='logo' /></Link>
+        </div>
+        <div className='nav-flex-right'>
+          <Link to='/cart'><FaCartArrowDown color='white' fontSize='2.5rem' /></Link>
+          <button className='sign-out' onClick={() => {
+            dispatch(logOut())
+            history.go(0)
+          }}><GoSignOut color='white' fontSize='2.5rem' /></button>
+        </div>
+      </div>
       <div className='product-grid'>
         {
           products.length > 0 ? (
