@@ -7,6 +7,7 @@
   background-color: white;
   margin: 25px;
   border: 10px solid #232426c2;
+  z-index: 0;
 }
 .order-desc {
   padding: 20px;
@@ -38,4 +39,15 @@
   padding: 5px;
   background-color: #373333;
   color: white;
+}
+
+.total {
+  position: absolute;
+  color: black;
+  top: 10%;
+  right: 15%;
+  background: white;
+  border: 5px solid #575859;
+  padding: 8px;
+  z-index: 0;
 }

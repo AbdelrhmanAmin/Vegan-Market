@@ -12,6 +12,7 @@ import logo from '../assets/logo.png'
 const Cart = ({ currentUser, cart, products }) => {
   const dispatch = useDispatch()
   const history = useHistory()
+  let total = 0
   useEffect(() => {
     dispatch(fetchOrders(currentUser.id))
     dispatch(fetchProducts())
@@ -32,25 +33,29 @@ const Cart = ({ currentUser, cart, products }) => {
       </div>
       <div className='orders-flex'>
         {
-          Object.keys(cart).map((key) => (
-            <div id={key} className='order-flex'>
-              <div className='order-img-div'>
-                <p>{products[key * 1 - 1].price}$</p>
-                <img src={products[key * 1 - 1].URL} alt='URL' width='250' height='250' />
+          Object.keys(cart).map((key) => {
+            total += products[key * 1 - 1].price
+            return (
+              <div id={key} className='order-flex'>
+                <div className='order-img-div'>
+                  <p>{products[key * 1 - 1].price}$</p>
+                  <img src={products[key * 1 - 1].URL} alt='URL' width='250' height='250' />
+                </div>
+                <div className='order-desc'>
+                  <h3>{products[key * 1 - 1].name}</h3>
+                  {
+                    products[key * 1 - 1].description.length > 160 ? <span>{products[key * 1 - 1].description.substring(0, 150)}...<Link to=''>read more</Link></span> : <span>{products[key * 1 - 1].description}</span>
+                  }
+                </div>
+                <button onClick={() => {
+                  removeOrder(cart[key].id)
+                  document.getElementById(key).remove()
+                }}>x </button>
               </div>
-              <div className='order-desc'>
-                <h3>{products[key * 1 - 1].name}</h3>
-                {
-                  products[key * 1 - 1].description.length > 160 ? <span>{products[key * 1 - 1].description.substring(0, 150)}...<Link to=''>read more</Link></span> : <span>{products[key * 1 - 1].description}</span>
-                }
-              </div>
-              <button onClick={() => {
-                removeOrder(cart[key].id)
-                document.getElementById(key).remove()
-              }}>x </button>
-            </div>
-          ))
+            )
+          })
         }
+        <strong className='total'>Total: {total}$</strong>
       </div>
     </div>
   )
