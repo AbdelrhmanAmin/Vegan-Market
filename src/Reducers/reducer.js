@@ -1,8 +1,19 @@
 import { combineReducers } from 'redux';
 
 const user = {}
-const cart = []
+const cart = {}
 const products = []
+const err_msg = ""
+
+function errorReducer(state = err_msg, action) {
+  switch (action.type) {
+    case 'ERROR':
+      return action.msg;
+    default:
+      return state;
+  }
+}
+
 function userReducer(state = user, action) {
   switch (action.type) {
     case 'LOGIN':
@@ -31,7 +42,7 @@ function productReducer(state = products, action) {
 }
 
 const reducers = {
-  userReducer, cartReducer, productReducer
+  userReducer, cartReducer, productReducer, errorReducer
 };
 
 const appReducer = combineReducers(reducers);

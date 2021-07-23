@@ -7,6 +7,7 @@ import {
 import Signup from './Signup';
 import Login from './Login';
 import Home from './Home';
+import Cart from './Cart';
 import ProtectedRoute from './ProtectedRoute';
 
 
@@ -19,6 +20,7 @@ function App() {
           <Route path='/Signup' exact component={Signup} />
           <Route path='/Login' exact component={Login} />
           <ProtectedRoute path='/' exact component={Home} />
+          <ProtectedRoute path='/Cart' exact component={Cart} />
         </Switch>
       </Router>
     </div>

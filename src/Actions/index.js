@@ -9,6 +9,11 @@ export const logOut = () => ({
   type: 'LOGOUT'
 })
 
+export const error = (msg) => ({
+  type: 'ERROR',
+  msg
+})
+
 export const cartSuccess = (orders) => ({
   type: 'CART_SUCCESS',
   orders
@@ -27,26 +32,32 @@ export const createOrder = (productId, userId) => {
   })
 }
 
+export const fetchOrders = (userId) => (dispatch) => {
+  fetch(`${process.env.REACT_APP_API}orders`).then((res) => res.json())
+    .then((orders) => {
+      let ordered = {}
+      for (let order of orders) {
+        if (order.user_id === userId) {
+          ordered[order.product_id] = order
+        }
+      }
+      dispatch(cartSuccess(ordered))
+    })
+    .catch((err) => { throw Error(`Error: ${err}`); });
+}
+
+export const removeOrder = (orderId) => {
+  fetch(`${process.env.REACT_APP_API}orders/${orderId}`, {
+    method: 'DELETE',
+    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+  })
+}
+
 export const fetchProducts = () => (dispatch) => {
   fetch(`${process.env.REACT_APP_API}products`).then((res) => res.json())
     .then((products) => {
       dispatch(productSuccess(products))
     })
-}
-
-export const fetchOrders = (userId) => (dispatch) => {
-  fetch(`${process.env.REACT_APP_API}orders`).then((res) => res.json())
-    .then((orders) => {
-      let ordered = []
-      for (let order of orders) {
-        if (order.user_id === userId) {
-          ordered.push(order)
-        }
-      }
-      console.log(ordered)
-      dispatch(cartSuccess(ordered))
-    })
-    .catch((err) => { throw Error(`Error: ${err}`); });
 }
 
 export const createUser = (name, email, password) => (dispatch) => {
@@ -56,6 +67,9 @@ export const createUser = (name, email, password) => (dispatch) => {
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
   }).then((res) => res.json())
     .then((response) => {
+      if (response.message) {
+        dispatch(error(response.message))
+      }
       if (response.user) {
         localStorage.setItem('token', response.user.token)
         let data = decode(response.user.token);
@@ -79,7 +93,9 @@ export const fetchUser = (email, password) => (dispatch) => {
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
   }).then((res) => res.json())
     .then((response) => {
-      console.log(response)
+      if (response.message) {
+        dispatch(error(response.message))
+      }
       if (response.user) {
         localStorage.setItem('token', response.user.token)
         let data = decode(response.user.token);
@@ -90,6 +106,7 @@ export const fetchUser = (email, password) => (dispatch) => {
           exp = null;
           return
         }
+        dispatch(error(''))
         dispatch(logIn(data))
       }
     })
