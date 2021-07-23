@@ -56,9 +56,6 @@ const Cart = ({ currentUser, cart, products }) => {
                 <button onClick={() => {
                   removeOrder(cart[key].id)
                   document.getElementById(key).remove()
-                  document.querySelector('#total').remove()
-                  let show = document.querySelector('#refresh');
-                  show.style.display = 'block'
                 }}>x </button>
               </div>
             )
