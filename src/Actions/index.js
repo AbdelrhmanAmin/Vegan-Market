@@ -1,5 +1,5 @@
 import decode from 'jwt-decode';
-
+const API = 'https://powerful-everglades-09026.herokuapp.com/'
 export const logIn = (user) => ({
   type: 'LOGIN',
   user,
@@ -25,7 +25,7 @@ export const productSuccess = (products) => ({
 })
 
 export const createOrder = (productId, userId) => {
-  fetch(`${process.env.REACT_APP_API}orders`, {
+  fetch(`${API}orders`, {
     method: 'post',
     body: JSON.stringify({ product_id: productId, user_id: userId }),
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
@@ -33,7 +33,7 @@ export const createOrder = (productId, userId) => {
 }
 
 export const fetchOrders = (userId) => (dispatch) => {
-  fetch(`${process.env.REACT_APP_API}orders`).then((res) => res.json())
+  fetch(`${API}orders`).then((res) => res.json())
     .then((orders) => {
       let ordered = {}
       for (let order of orders) {
@@ -47,21 +47,21 @@ export const fetchOrders = (userId) => (dispatch) => {
 }
 
 export const removeOrder = (orderId) => {
-  fetch(`${process.env.REACT_APP_API}orders/${orderId}`, {
+  fetch(`${API}orders/${orderId}`, {
     method: 'DELETE',
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
   })
 }
 
 export const fetchProducts = () => (dispatch) => {
-  fetch(`${process.env.REACT_APP_API}products`).then((res) => res.json())
+  fetch(`${API}products`).then((res) => res.json())
     .then((products) => {
       dispatch(productSuccess(products))
     })
 }
 
 export const createUser = (name, email, password) => (dispatch) => {
-  fetch(`${process.env.REACT_APP_API}users`, {
+  fetch(`${API}users`, {
     method: 'post',
     body: JSON.stringify({ name, email, password }),
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
@@ -87,7 +87,7 @@ export const createUser = (name, email, password) => (dispatch) => {
 }
 
 export const fetchUser = (email, password) => (dispatch) => {
-  fetch(`${process.env.REACT_APP_API}sessions`, {
+  fetch(`${API}sessions`, {
     method: 'post',
     body: JSON.stringify({ email, password }),
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
