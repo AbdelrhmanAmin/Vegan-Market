@@ -16,7 +16,6 @@ const Cart = ({ currentUser, cart, products }) => {
   const history = useHistory()
   const [visible, setVisible] = useState(false)
   const [productX, setProduct] = useState(0)
-  let total = 0
   useEffect(() => {
     dispatch(fetchOrders(currentUser.id))
     dispatch(fetchProducts())
@@ -39,7 +38,6 @@ const Cart = ({ currentUser, cart, products }) => {
       <div className='orders-flex'>
         {
           Object.keys(cart).map((key) => {
-            total += products[key * 1 - 1].price
             return (
               <div id={key} className='order-flex'>
                 <div className='order-img-div'>
@@ -75,10 +73,6 @@ const Cart = ({ currentUser, cart, products }) => {
           )
             : null
         }
-
-        <strong id='total' className='total'>Total: {total}$</strong>
-        <strong id='refresh' className='total' onClick={() => history.go(0)}><BsArrowRepeat /></strong>
-
       </div>
     </div>
   )
