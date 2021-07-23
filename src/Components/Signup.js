@@ -37,7 +37,7 @@ const Signup = ({ error }) => {
       target.style.fontSize = 11 + 'px'
       target.innerHTML = "Email must be valid."
     }
-    else if (!test.test(name.replace(' ', ''))) {
+    if (!test.test(name.replace(' ', ''))) {
       let target = document.getElementById('name-err')
       target.style.color = '#b22424'
       target.style.fontWeight = 500
