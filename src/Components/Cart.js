@@ -1,21 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Link, useHistory
 } from 'react-router-dom';
+import Product from './Product';
 import { connect, useDispatch } from 'react-redux';
 import { fetchOrders, fetchProducts, removeOrder, logOut } from '../Actions'
 import './cart.css';
 import { FaCartArrowDown } from "react-icons/fa";
 import { GoSignOut } from "react-icons/go";
+import { BsArrowRepeat } from "react-icons/bs";
 import logo from '../assets/logo.png'
 
 const Cart = ({ currentUser, cart, products }) => {
   const dispatch = useDispatch()
   const history = useHistory()
+  const [visible, setVisible] = useState(false)
+  const [productX, setProduct] = useState(0)
   let total = 0
   useEffect(() => {
     dispatch(fetchOrders(currentUser.id))
     dispatch(fetchProducts())
+
   }, [currentUser])
   return (
     <div>
@@ -44,18 +49,36 @@ const Cart = ({ currentUser, cart, products }) => {
                 <div className='order-desc'>
                   <h3>{products[key * 1 - 1].name}</h3>
                   {
-                    products[key * 1 - 1].description.length > 160 ? <span>{products[key * 1 - 1].description.substring(0, 150)}...<Link to=''>read more</Link></span> : <span>{products[key * 1 - 1].description}</span>
+                    products[key * 1 - 1].description.length > 160 ? <span>{products[key * 1 - 1].description.substring(0, 140)}...<Link onClick={() => {
+                      setVisible(true)
+                      setProduct(products[key * 1 - 1])
+                    }}>read more</Link></span> : <span>{products[key * 1 - 1].description}</span>
                   }
                 </div>
                 <button onClick={() => {
                   removeOrder(cart[key].id)
                   document.getElementById(key).remove()
+                  document.querySelector('#total').remove()
+                  let show = document.querySelector('#refresh');
+                  show.style.display = 'block'
                 }}>x </button>
               </div>
             )
           })
         }
-        <strong className='total'>Total: {total}$</strong>
+        {
+          visible ? (
+            <div>
+              <Product product={productX} setVisible={setVisible} />
+              <div className='layer'></div>
+            </div>
+          )
+            : null
+        }
+
+        <strong id='total' className='total'>Total: {total}$</strong>
+        <strong id='refresh' className='total' onClick={() => history.go(0)}><BsArrowRepeat /></strong>
+
       </div>
     </div>
   )

@@ -50,4 +50,8 @@
   border: 5px solid #575859;
   padding: 8px;
   z-index: 0;
+  display: block;
+}
+#refresh {
+  display: none;
 }

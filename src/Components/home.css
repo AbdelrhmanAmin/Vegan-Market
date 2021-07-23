@@ -20,11 +20,22 @@
 
 .product-img-div p {
   position: absolute;
-  right: 5%;
+  left: 5%;
   top: 5%;
   padding: 5px;
   background-color: #373333;
   color: white;
+}
+
+.exit-popup {
+  position: absolute;
+  padding: 5px 10px;
+  height: 25px;
+  top: 5%;
+  right: 5%;
+  background-color: #373333;
+  color: white;
+  margin-left: auto;
 }
 
 .product-img-div img {
@@ -82,4 +93,23 @@
 }
 .nav-flex-right a {
   margin: 0px 30px;
+}
+.pop-up {
+  position: fixed;
+  width: 300px;
+  top: 0;
+  left: 40%;
+  z-index: 1;
+  border: 10px solid white;
+}
+.layer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(0 0 0 / 70%);
+  z-index: 0;
 }

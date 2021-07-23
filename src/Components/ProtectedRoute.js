@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route, Redirect, useHistory } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import decode from 'jwt-decode';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../Actions/index';
@@ -7,7 +7,6 @@ import { logIn } from '../Actions/index';
 
 const ProtectedRoute = ({ component: Component }) => {
   const dispatch = useDispatch()
-  const history = useHistory()
   let token = localStorage.getItem('token');
   useEffect(() => {
     if (token) {

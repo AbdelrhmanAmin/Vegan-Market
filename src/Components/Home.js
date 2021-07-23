@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
-import { fetchOrders, fetchProducts, logOut, createOrder } from '../Actions'
+import { fetchOrders, fetchProducts, logOut, createOrder } from '../Actions';
+import Product from './Product';
 import { FaCartArrowDown } from "react-icons/fa";
 import { GoSignOut } from "react-icons/go";
 import './home.css';
@@ -12,6 +13,8 @@ import logo from '../assets/logo.png'
 const Home = ({ currentUser, cart, products }) => {
   const dispatch = useDispatch()
   const history = useHistory()
+  const [visible, setVisible] = useState(false)
+  const [productX, setProduct] = useState(0)
   useEffect(() => {
     dispatch(fetchOrders(currentUser.id))
     dispatch(fetchProducts())
@@ -34,7 +37,7 @@ const Home = ({ currentUser, cart, products }) => {
         {
           products.length > 0 ? (
             products.map((product) => (
-              <div>
+              <div key={product.id}>
                 <div className='product-img-div'>
                   <p>{product.price}$</p>
                   <img src={product.URL} alt='URL' />
@@ -42,7 +45,10 @@ const Home = ({ currentUser, cart, products }) => {
                 <div className='product-desc-div'>
                   <h3>{product.name}</h3>
                   {
-                    product.description.length > 160 ? <span>{product.description.substring(0, 140)}...<Link to=''>read more</Link></span> : <span>{product.description}</span>
+                    product.description.length > 160 ? <span>{product.description.substring(0, 140)}...<Link onClick={() => {
+                      setVisible(true)
+                      setProduct(product)
+                    }}>read more</Link></span> : <span>{product.description}</span>
                   }
                   {
                     cart[product.id] === undefined ? (<button className='cart-off' id={product.id} onClick={() => {
@@ -54,6 +60,15 @@ const Home = ({ currentUser, cart, products }) => {
               </div>
             ))
           ) : null
+        }
+        {
+          visible ? (
+            <div>
+              <Product product={productX} setVisible={setVisible} />
+              <div className='layer'></div>
+            </div>
+          )
+            : null
         }
       </div>
     </div>
