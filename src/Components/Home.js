@@ -27,6 +27,7 @@ const Home = ({ currentUser, cart, products }) => {
     dispatch(fetchProducts())
     setInterval(() => {
       document.getElementById('logo').src = logos[i]
+
       i += 1
       if (i === logos.length) {
         i = 0
@@ -39,8 +40,8 @@ const Home = ({ currentUser, cart, products }) => {
         <div>
           <Link to='/' className='logo-container'>
             <img src={logo} width='75' height='75' alt='logo' className='logo l-1' id='logo' />
-            <h3>Vegan</h3>
             <h2>Market</h2>
+            <h3>Vegan</h3>
           </Link>
         </div>
         <div className='nav-flex-right'>
@@ -57,7 +58,7 @@ const Home = ({ currentUser, cart, products }) => {
             products.map((product) => (
               <div key={product.id}>
                 <div className='product-img-div'>
-                  <p>{product.price}$</p>
+                  <p>{product.price}.00$</p>
                   <img src={product.URL} alt='URL' />
                 </div>
                 <div className='product-desc-div'>
