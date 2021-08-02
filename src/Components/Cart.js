@@ -1,40 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Link, useHistory
+  Link
 } from 'react-router-dom';
 import Product from './Product';
 import { connect, useDispatch } from 'react-redux';
-import { fetchOrders, fetchProducts, removeOrder, logOut } from '../Actions'
+import { fetchOrders, fetchProducts, removeOrder } from '../Actions'
 import './cart.css';
-import { FaCartArrowDown } from "react-icons/fa";
-import { GoSignOut } from "react-icons/go";
-import { BsArrowRepeat } from "react-icons/bs";
-import logo from '../assets/logo.png'
+import Nav from './Nav';
 
 const Cart = ({ currentUser, cart, products }) => {
   const dispatch = useDispatch()
-  const history = useHistory()
   const [visible, setVisible] = useState(false)
   const [productX, setProduct] = useState(0)
   useEffect(() => {
     dispatch(fetchOrders(currentUser.id))
     dispatch(fetchProducts())
-
   }, [currentUser])
   return (
     <div>
-      <div className='nav-flex'>
-        <div>
-          <Link to='/'><img src={logo} width='75' height='75' alt='logo' /></Link>
-        </div>
-        <div className='nav-flex-right'>
-          <Link to='/cart'><FaCartArrowDown color='white' fontSize='2.5rem' /></Link>
-          <button className='sign-out' onClick={() => {
-            dispatch(logOut())
-            history.go(0)
-          }}><GoSignOut color='white' fontSize='2.5rem' /></button>
-        </div>
-      </div>
+      <Nav />
       <div className='orders-flex'>
         {
           Object.keys(cart).map((key) => {
