@@ -1,9 +1,7 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+SC&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital@1&family=Source+Sans+Pro&display=swap');
-body {
-  background-color: #383838;
-}
+
 .cat-main {
   width: 25%;
   position: fixed;
