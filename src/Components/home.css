@@ -5,8 +5,124 @@ body {
   background-color: #383838;
 }
 .cat-main {
-  width: 25%;
   position: fixed;
-  right: 38%;
-  bottom: 28%;
+  bottom: 15%;
+  right: 0%;
+  width: 34%;
+  z-index: 1;
+}
+.heart-div {
+  background: #36ad47;
+  transform: rotate(62deg);
+  width: 50px;
+  padding: 10px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  position: absolute;
+  right: 2%;
+  top: 40%;
+  box-shadow: 0 0px 19px 1px rgb(79 191 97);
+  animation: float-2 1.5s ease-in-out infinite;
+}
+@keyframes float-2 {
+  0% {
+    box-shadow: 0 -10px 19px 1px rgb(255 117 33 / 70%);
+    transform: translatey(5px);
+  }
+  50% {
+    box-shadow: 0 10px 19px 1px rgb(255 117 33 / 70%);
+    transform: translatey(-10px);
+  }
+  100% {
+    box-shadow: 0 -10px 19px 1px rgb(255 117 33 / 70%);
+    transform: translatey(5px);
+  }
+}
+.heart-div::after {
+  content: ' ';
+  width: 0;
+  height: 0;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid #36ad47;
+  position: absolute;
+  transform: rotate(180deg);
+  bottom: -15%;
+  left: 15%;
+}
+.heart-div-2 {
+  background: #ffe101;
+  transform: rotate(312deg);
+  width: 50px;
+  padding: 10px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  position: absolute;
+  right: 24%;
+  top: 33%;
+  box-shadow: 0 0px 19px 1px rgb(254 225 0);
+}
+.heart-div-2::after {
+  content: ' ';
+  width: 0;
+  height: 0;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid #ffe101;
+  position: absolute;
+  transform: rotate(180deg);
+  bottom: -15%;
+  left: 15%;
+}
+.bracket {
+  position: absolute;
+  right: 35%;
+  color: #ff9500;
+  font-size: 25em;
+  z-index: 1;
+}
+.bracket-2 {
+  position: absolute;
+  left: 2px;
+  color: #ff9500;
+  font-size: 25em;
+  z-index: 1;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  justify-content: space-between;
+  width: 750px;
+  position: absolute;
+  top: 174px;
+  height: 311px;
+  padding: 30px;
+  left: 6%;
+  box-sizing: border-box;
+  color: #ff9500;
+  box-shadow: rgb(50 50 93 / 25%) 0px 30px 60px -12px inset,
+    rgb(0 0 0 / 30%) 0px 18px 36px -18px inset;
+}
+.shop-btn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 115px;
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 25px;
+  background: #ff9500;
+  color: white;
+  box-shadow: 0 0 11px 1px rgb(255 149 0);
+}
+.shop-btn:hover,
+a:hover {
+  cursor: pointer;
 }
