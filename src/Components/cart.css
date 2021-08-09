@@ -13,6 +13,9 @@
   padding: 20px;
   width: 750px;
 }
+.order-desc span {
+  margin: auto;
+}
 .order-img-div {
   position: relative;
 }

@@ -30,12 +30,7 @@ const Cart = ({ currentUser, cart, products }) => {
                 </div>
                 <div className='order-desc'>
                   <h3>{products[key * 1 - 1].name}</h3>
-                  {
-                    products[key * 1 - 1].description.length > 160 ? <span>{products[key * 1 - 1].description.substring(0, 140)}...<Link onClick={() => {
-                      setVisible(true)
-                      setProduct(products[key * 1 - 1])
-                    }}>read more</Link></span> : <span>{products[key * 1 - 1].description}</span>
-                  }
+                  <span>{products[key * 1 - 1].description}</span>
                 </div>
                 <button onClick={() => {
                   removeOrder(cart[key].id)

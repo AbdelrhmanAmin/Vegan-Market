@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { logOut } from '../Actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 import { FaCartArrowDown } from "react-icons/fa";
 import { GoSignOut } from "react-icons/go";
 import './nav.css';
@@ -13,17 +13,16 @@ import banana from '../assets/logo-banana.png'
 import brocoli from '../assets/logo-brocoli.png'
 import grape from '../assets/logo-grape.png'
 import tomato from '../assets/logo-tomato.png'
+import placeholder from '../assets/placeholder.jpg'
 
-const Nav = () => {
+const Nav = ({ user }) => {
   const dispatch = useDispatch()
   const history = useHistory()
   const i = useRef(0)
   let logos = [logo, banana, apple, grape, brocoli, tomato]
   useEffect(() => {
     setInterval(() => {
-      console.log(i)
       document.getElementById('logo').src = logos[i.current]
-
       i.current += 1
       if (i.current === logos.length) {
         i.current = 0
@@ -40,13 +39,21 @@ const Nav = () => {
         </Link>
       </div>
       <div className='nav-flex-right'>
-        <Link to='/cart'><FaCartArrowDown color='white' fontSize='2.5rem' /></Link>
-        <button className='sign-out' onClick={() => {
+        <div className="flex-right-header my-3">
+          <Link className="main-username" to={{ pathname: `/Cart` }}>
+            <img src={placeholder} width="25" alt="icon" className="user-icon" />
+            <strong className="main-username">{user.name}</strong>
+          </Link>
+        </div>
+        <Link className='sign-out' onClick={() => {
           dispatch(logOut())
           history.go(0)
-        }}><GoSignOut color='white' fontSize='2.5rem' /></button>
+        }}><GoSignOut color='white' fontSize='2.5rem' /></Link>
       </div>
     </div>
   )
 }
-export default Nav;
+const mapStateToProps = (state) => ({
+  user: state.userReducer,
+});
+export default connect(mapStateToProps, null)(Nav);

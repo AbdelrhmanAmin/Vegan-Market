@@ -27,20 +27,6 @@ body {
   box-shadow: 0 0px 19px 1px rgb(79 191 97);
   animation: float-2 1.5s ease-in-out infinite;
 }
-@keyframes float-2 {
-  0% {
-    box-shadow: 0 -10px 19px 1px rgb(255 117 33 / 70%);
-    transform: translatey(5px);
-  }
-  50% {
-    box-shadow: 0 10px 19px 1px rgb(255 117 33 / 70%);
-    transform: translatey(-10px);
-  }
-  100% {
-    box-shadow: 0 -10px 19px 1px rgb(255 117 33 / 70%);
-    transform: translatey(5px);
-  }
-}
 .heart-div::after {
   content: ' ';
   width: 0;
@@ -67,6 +53,7 @@ body {
   right: 24%;
   top: 33%;
   box-shadow: 0 0px 19px 1px rgb(254 225 0);
+  animation: float-2 1.5s ease-in-out infinite;
 }
 .heart-div-2::after {
   content: ' ';
@@ -79,6 +66,17 @@ body {
   transform: rotate(180deg);
   bottom: -15%;
   left: 15%;
+}
+@keyframes float-2 {
+  0% {
+    margin-right: 0;
+  }
+  50% {
+    margin-right: 5px;
+  }
+  100% {
+    margin-right: 0px;
+  }
 }
 .bracket {
   position: absolute;
@@ -95,9 +93,9 @@ body {
   z-index: 1;
 }
 .content {
+  z-index: 0;
   display: flex;
   flex-direction: column;
-  background-color: white;
   justify-content: space-between;
   width: 750px;
   position: absolute;
@@ -108,7 +106,9 @@ body {
   box-sizing: border-box;
   color: #ff9500;
   box-shadow: rgb(50 50 93 / 25%) 0px 30px 60px -12px inset,
-    rgb(0 0 0 / 30%) 0px 18px 36px -18px inset;
+    rgb(0 0 0 / 30%) 0px 18px 36px -18px inset,
+    rgb(0 0 0 / 30%) -3px -10px 36px -18px inset,
+    rgb(0 0 0 / 30%) -20px 0px 36px 10px inset;
 }
 .shop-btn {
   display: flex;
@@ -117,12 +117,13 @@ body {
   width: 115px;
   font-weight: bold;
   padding: 12px;
-  border-radius: 25px;
   background: #ff9500;
   color: white;
   box-shadow: 0 0 11px 1px rgb(255 149 0);
+  transition: all 0.5s ease-in-out;
 }
-.shop-btn:hover,
-a:hover {
+
+.shop-btn:hover {
   cursor: pointer;
+  border-radius: 25px;
 }
