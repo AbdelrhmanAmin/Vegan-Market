@@ -65,7 +65,7 @@ const Signup = ({ error }) => {
     }
   }
   return (
-    <main className='container'>
+    <main className='sign-container'>
       <section className='top'>
         <div className="title">SIGN UP</div>
         <span className='redirect'>Already have an account? <Link to='/Login'>Login</Link></span>

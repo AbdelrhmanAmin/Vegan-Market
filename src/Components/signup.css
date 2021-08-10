@@ -57,7 +57,7 @@ nav div a {
 }
 
 /* MAIN */
-main {
+.sign-container {
   max-width: 380px;
   margin: 25px auto;
 }

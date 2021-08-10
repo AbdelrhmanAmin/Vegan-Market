@@ -5,11 +5,10 @@ body {
   background-color: #383838;
 }
 .cat-main {
-  position: fixed;
-  bottom: 15%;
-  right: 0%;
-  width: 34%;
-  z-index: 1;
+  width: 450px;
+}
+.heart-containers {
+  position: relative;
 }
 .heart-div {
   background: #36ad47;
@@ -22,8 +21,8 @@ body {
   align-items: center;
   border-radius: 10px;
   position: absolute;
-  right: 2%;
-  top: 40%;
+  right: 5%;
+  top: 30%;
   box-shadow: 0 0px 19px 1px rgb(79 191 97);
   animation: float-2 1.5s ease-in-out infinite;
 }
@@ -41,7 +40,7 @@ body {
 }
 .heart-div-2 {
   background: #ffe101;
-  transform: rotate(312deg);
+  transform: rotate(316deg);
   width: 50px;
   padding: 10px;
   color: white;
@@ -50,10 +49,11 @@ body {
   align-items: center;
   border-radius: 10px;
   position: absolute;
-  right: 24%;
-  top: 33%;
+  left: 20%;
+  top: 19%;
+  right: 0%;
   box-shadow: 0 0px 19px 1px rgb(254 225 0);
-  animation: float-2 1.5s ease-in-out infinite;
+  animation: float-3 1.5s ease-in-out infinite;
 }
 .heart-div-2::after {
   content: ' ';
@@ -78,15 +78,28 @@ body {
     margin-right: 0px;
   }
 }
+@keyframes float-3 {
+  0% {
+    margin-left: -5px;
+  }
+  50% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: -5px;
+  }
+}
 .bracket {
-  position: absolute;
+  /* position: absolute; */
   right: 35%;
   color: #ff9500;
   font-size: 25em;
   z-index: 1;
+  display: inline;
 }
 .bracket-2 {
-  position: absolute;
+  /* position: absolute; */
+  display: inline;
   left: 2px;
   color: #ff9500;
   font-size: 25em;
@@ -97,12 +110,13 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 750px;
+  margin: 0 auto;
+  width: 85%;
   position: absolute;
-  top: 174px;
-  height: 311px;
-  padding: 30px;
-  left: 6%;
+  top: 17%;
+  height: 316px;
+  padding: 30px 100px 30px 50px;
+  left: 8%;
   box-sizing: border-box;
   color: #ff9500;
   box-shadow: rgb(50 50 93 / 25%) 0px 30px 60px -12px inset,
@@ -126,4 +140,19 @@ body {
 .shop-btn:hover {
   cursor: pointer;
   border-radius: 25px;
+}
+
+.home-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+.section-1,
+.section-2 {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.section-1 {
+  justify-content: space-between;
 }
