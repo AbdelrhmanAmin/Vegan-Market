@@ -6,9 +6,9 @@
   display: flex;
   background-color: white;
   margin: 25px;
-  border: 10px solid #232426c2;
-  border-top: 10px solid #ff9500;
-  border-bottom: 10px solid white;
+  border: 10px solid #ff9500;
+  border-top: 35px solid #ffffff;
+  border-bottom: 30px solid white;
   z-index: 0;
   flex-direction: column;
   position: relative;
@@ -44,9 +44,12 @@
 
 .price {
   position: absolute;
-  left: -3%;
+  left: -2%;
   top: 35%;
   padding: 5px;
+  width: 65px;
+  text-align: end;
+  font-weight: bold;
   background-color: #ff9500;
   color: white;
   z-index: 1;
