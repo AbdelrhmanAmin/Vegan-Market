@@ -165,11 +165,11 @@ body {
   justify-content: space-between;
 }
 .arrow {
-  bottom: 26%;
-  position: fixed;
+  bottom: 24%;
+  position: absolute;
   width: 100px;
   transform: rotate(90deg) scaleX(-1);
-  left: 220px;
+  left: 175px;
 }
 @media only screen and (max-width: 1028px) {
   .equal {
