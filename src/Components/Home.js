@@ -20,8 +20,10 @@ const Home = () => {
               ADD THEM NOW!
         </p>
             <img src={arrow} alt='arrow' className='arrow' />
-            <Link to='/Market'>
-              <button className='shop-btn'>Shop Now <FaCaretSquareRight /> </button>
+            <Link to='/Market' style={{ width: '115px' }}>
+              <button className='shop-btn'>
+                Shop Now <FaCaretSquareRight />
+              </button>
             </Link>
           </div>
           <h1 className='bracket-2'>]</h1>

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-const user = {}
+const user = ''
 const cart = {}
 const products = []
 const err_msg = ""

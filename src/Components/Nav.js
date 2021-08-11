@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { logOut } from '../Actions';
 import { useDispatch, connect } from 'react-redux';
 import { FaCartArrowDown } from "react-icons/fa";
@@ -17,10 +17,15 @@ import placeholder from '../assets/placeholder.jpg'
 
 const Nav = ({ user }) => {
   const dispatch = useDispatch()
+  const [username, setUsername] = useState(false)
   const history = useHistory()
   const i = useRef(0)
   let logos = [logo, banana, apple, grape, brocoli, tomato]
   useEffect(() => {
+    if (user !== '') {
+      let arr = user.name.split(' ')
+      if (arr.length > 1) { setUsername(arr[arr.length - 1]) }
+    }
     setInterval(() => {
       document.getElementById('logo').src = logos[i.current]
       i.current += 1
@@ -28,7 +33,7 @@ const Nav = ({ user }) => {
         i.current = 0
       }
     }, 3000)
-  }, [])
+  }, [user])
   return (
     <div className='nav-flex'>
       <div>
@@ -39,12 +44,12 @@ const Nav = ({ user }) => {
         </Link>
       </div>
       <div className='nav-flex-right'>
-        <div className="flex-right-header my-3">
-          <Link className="main-username" to={{ pathname: `/Cart` }}>
+        <Link to={{ pathname: `/Cart` }} className="flex-right-header my-3">
+          <div className="main-username" >
             <img src={placeholder} width="25" alt="icon" className="user-icon" />
-            <strong className="main-username">{user.name}</strong>
-          </Link>
-        </div>
+            <strong className="main-username">{username ? username : user.name}</strong>
+          </div>
+        </Link>
         <Link className='sign-out' onClick={() => {
           dispatch(logOut())
           history.go(0)

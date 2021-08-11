@@ -40,7 +40,7 @@ const Login = ({ error }) => {
     }
     if (password.length > 5 && re.test(String(email).toLowerCase())) {
       dispatch(fetchUser(email, password));
-      let container = document.querySelector('.container')
+      let container = document.querySelector('.sign-container')
       container.innerHTML = ''
       let gif = document.createElement('img')
       gif.src = 'https://cdn.dribbble.com/users/451713/screenshots/3853529/_____.gif'
@@ -52,7 +52,7 @@ const Login = ({ error }) => {
     }
   }
   return (
-    <main className='container'>
+    <main className='sign-container'>
       <section className='top'>
         <div className="title">Login</div>
         <span className='redirect'>Don't have an account? <Link to='/Signup'>Sign Up</Link></span>

@@ -53,7 +53,7 @@ const Signup = ({ error }) => {
     }
     if (password.length > 5 && test.test(name.replace(' ', '')) && re.test(String(email).toLowerCase())) {
       dispatch(createUser(name, email, password));
-      let container = document.querySelector('.container')
+      let container = document.querySelector('.sign-container')
       container.innerHTML = ''
       let gif = document.createElement('img')
       gif.src = 'https://cdn.dribbble.com/users/451713/screenshots/3853529/_____.gif'
