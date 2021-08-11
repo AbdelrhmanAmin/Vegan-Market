@@ -15,7 +15,6 @@
 }
 .product-img-div {
   position: relative;
-  max-width: 300px;
   height: 250px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
@@ -51,6 +50,7 @@
 .product-desc-div {
   background-color: rgb(255 149 0);
   height: 100%;
+  width: 100%;
   text-align: start;
   color: white;
   padding: 25px;
@@ -105,4 +105,21 @@
   padding: 10px;
   border: 5px solid #ffac00e0;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+@media only screen and (max-width: 1200px) {
+  .product-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .product-grid {
+    grid-template-columns: 1fr 1fr;
+    margin: 0 50px;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    margin: 0 50px;
+  }
 }

@@ -95,9 +95,6 @@
   background: #ff9500;
   justify-content: space-between;
   border-inline: 1px solid #36363675;
-  position: relative;
-  width: 106%;
-  left: -11px;
   padding: 20px;
   align-items: center;
   color: white;
@@ -105,4 +102,15 @@
     rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px,
     rgb(0 0 0 / 9%) 0px -3px 5px;
   z-index: 1;
+}
+
+@media only screen and (max-width: 1028px) {
+  .orders-flex {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .orders-flex {
+    grid-template-columns: 1fr;
+  }
 }

@@ -5,6 +5,14 @@ import arrow from '../assets/arrow.png';
 import { Link } from 'react-router-dom';
 import { FaCaretSquareRight } from "react-icons/fa";
 const Home = () => {
+  const [cats, setCats] = useState(9)
+  const [likes, setLikes] = useState(5)
+  const handleCats = (e) => {
+    setCats(cats + 1)
+  }
+  const handleLikes = (e) => {
+    setLikes(likes + 1)
+  }
   return (
     <div>
       <Nav />
@@ -32,13 +40,14 @@ const Home = () => {
           <div className='home-img'>
             <img src={main} className='cat-main' />
             <div className='hearts-container'>
-              <div className='heart-div'>
+              <div className='heart-div' onClick={() => handleCats()}>
                 😸
-        <span>9</span>
+        <span>{cats}</span>
               </div>
-              <div className='heart-div-2'>
+              <div className='heart-div-2' onClick={() => handleLikes()}>
+                {/* <div className='animation'>👍</div> */}
                 👍
-        <span>5</span>
+        <span>{likes}</span>
               </div>
             </div>
           </div>
