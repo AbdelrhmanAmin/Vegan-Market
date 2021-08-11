@@ -26,6 +26,14 @@ body {
   box-shadow: 0 0px 19px 1px rgb(79 191 97);
   animation: float-2 1.5s ease-in-out infinite;
 }
+.green {
+  color: #36ad47;
+  text-transform: uppercase;
+}
+.yellow {
+  color: #ffe101;
+  text-transform: uppercase;
+}
 .heart-div::after {
   content: ' ';
   width: 0;
@@ -89,7 +97,7 @@ body {
     margin-left: -5px;
   }
 }
-.bracket {
+.bracket-1 {
   /* position: absolute; */
   right: 35%;
   color: #ff9500;
@@ -155,4 +163,61 @@ body {
 }
 .section-1 {
   justify-content: space-between;
+}
+.arrow {
+  bottom: 26%;
+  position: fixed;
+  width: 100px;
+  transform: rotate(90deg) scaleX(-1);
+  left: 220px;
+}
+@media only screen and (max-width: 1028px) {
+  .equal {
+    display: block;
+  }
+  .arrow {
+    left: 39%;
+    position: absolute;
+  }
+  .section-2 {
+    justify-content: center;
+  }
+  .home-img {
+    position: relative;
+    width: 500px;
+  }
+  .home-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+  }
+  .section-1 {
+    flex-direction: column;
+    width: 400px;
+    margin: 0 auto;
+    order: 2;
+  }
+  .bracket-1 {
+    transform: rotate(90deg);
+  }
+  .bracket-2 {
+    transform: rotate(90deg);
+  }
+  .content {
+    width: 391px;
+    margin: 0 auto;
+    position: absolute;
+    top: 27%;
+    height: 425px;
+    left: 0px;
+    padding: 45px 15px 45px 50px;
+  }
+  .heart-div {
+    top: 20%;
+    right: 15%;
+  }
+  .heart-div-2 {
+    top: 10%;
+    left: 16%;
+  }
 }
