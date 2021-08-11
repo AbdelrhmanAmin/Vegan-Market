@@ -223,3 +223,31 @@ body {
     left: 16%;
   }
 }
+#like-target {
+  display: none;
+}
+#cat-target {
+  display: none;
+}
+.animation {
+  position: absolute;
+  animation: fade-away 0.9s ease-in;
+  display: block !important;
+}
+@keyframes fade-away {
+  0% {
+    transform: scale(2.5);
+    bottom: 50%;
+  }
+  50% {
+    transform: scale(1.5);
+    bottom: 150%;
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(0);
+    bottom: 200%;
+    opacity: 0;
+    display: none;
+  }
+}

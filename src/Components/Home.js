@@ -9,9 +9,17 @@ const Home = () => {
   const [likes, setLikes] = useState(5)
   const handleCats = (e) => {
     setCats(cats + 1)
+    document.getElementById('cat-target').classList.add('animation')
+    setTimeout(() => {
+      document.getElementById('cat-target').classList.remove('animation')
+    }, 800)
   }
   const handleLikes = (e) => {
     setLikes(likes + 1)
+    document.getElementById('like-target').classList.add('animation')
+    setTimeout(() => {
+      document.getElementById('like-target').classList.remove('animation')
+    }, 800)
   }
   return (
     <div>
@@ -41,11 +49,12 @@ const Home = () => {
             <img src={main} className='cat-main' />
             <div className='hearts-container'>
               <div className='heart-div' onClick={() => handleCats()}>
+                <div id='cat-target'>😸</div>
                 😸
         <span>{cats}</span>
               </div>
               <div className='heart-div-2' onClick={() => handleLikes()}>
-                {/* <div className='animation'>👍</div> */}
+                <div id='like-target'>👍</div>
                 👍
         <span>{likes}</span>
               </div>
