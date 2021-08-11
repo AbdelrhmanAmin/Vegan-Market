@@ -30,7 +30,7 @@ const Home = () => {
 
           <h1 className='bracket-1'>[</h1>
           <div className='content'>
-            <h1>VEGAN MARKET</h1>
+            <h1 className='content-headline'>VEGAN MARKET</h1>
             <p>
               Beans, Grains, and <strong className='green'>Vegetables</strong> <strong className='equal'>=</strong> <strong className='yellow'>Happy</strong> Life.<br></br>
               ADD THEM NOW!

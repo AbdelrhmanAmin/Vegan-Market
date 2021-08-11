@@ -134,6 +134,9 @@ body {
     rgb(0 0 0 / 30%) -3px -10px 36px -18px inset,
     rgb(0 0 0 / 30%) -20px 0px 36px 10px inset;
 }
+.content-headline {
+  font-family: 'Crimson Text', serif;
+}
 .shop-btn {
   display: flex;
   justify-content: space-around;
