@@ -1,13 +1,17 @@
 .orders-flex {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 .order-flex {
   display: flex;
   background-color: white;
   margin: 25px;
   border: 10px solid #232426c2;
+  border-top: 10px solid #ff9500;
+  border-bottom: 10px solid white;
   z-index: 0;
+  flex-direction: column;
+  position: relative;
 }
 .order-desc {
   padding: 20px;
@@ -18,6 +22,8 @@
 }
 .order-img-div {
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 .order-desc a {
   color: #476899 !important;
@@ -26,22 +32,24 @@
 .order-desc a:hover {
   text-decoration: underline;
 }
-.order-flex button {
+.remove {
   padding: 5px 8px;
   height: 25px;
   margin: 15px;
   background-color: #373333;
   color: white;
   margin-left: auto;
+  cursor: pointer;
 }
 
-.order-img-div p {
+.price {
   position: absolute;
-  left: 5%;
-  top: 5%;
+  left: -3%;
+  top: 35%;
   padding: 5px;
-  background-color: #373333;
+  background-color: #ff9500;
   color: white;
+  z-index: 1;
 }
 
 .total {
@@ -57,4 +65,13 @@
 }
 #refresh {
   display: none;
+}
+.info-div {
+  display: flex;
+  background: #ff9500;
+  justify-content: space-between;
+  width: 100%;
+  padding: 11px;
+  align-items: center;
+  color: white;
 }

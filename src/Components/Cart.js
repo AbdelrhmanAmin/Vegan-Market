@@ -24,18 +24,17 @@ const Cart = ({ currentUser, cart, products }) => {
           Object.keys(cart).map((key) => {
             return (
               <div id={key} className='order-flex'>
+                <div className='info-div'>
+                  <h3>{products[key * 1 - 1].name}</h3>
+                  <p className='price'>{products[key * 1 - 1].price}$</p>
+                  <button className='remove' onClick={() => {
+                    removeOrder(cart[key].id)
+                    document.getElementById(key).remove()
+                  }}>x </button>
+                </div>
                 <div className='order-img-div'>
-                  <p>{products[key * 1 - 1].price}$</p>
                   <img src={products[key * 1 - 1].URL} alt='URL' width='250' height='250' />
                 </div>
-                <div className='order-desc'>
-                  <h3>{products[key * 1 - 1].name}</h3>
-                  <span>{products[key * 1 - 1].description}</span>
-                </div>
-                <button onClick={() => {
-                  removeOrder(cart[key].id)
-                  document.getElementById(key).remove()
-                }}>x </button>
               </div>
             )
           })
