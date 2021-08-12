@@ -59,7 +59,7 @@ const Home = ({ currentUser, cart, products }) => {
                   <div className='product-desc-div'>
                     <h2>{product.name}</h2>
                     {
-                      product.description.length > 160 ? <span>{product.description.substring(0, 140)}...<Link onClick={() => {
+                      product.description.length > 160 ? <span>{product.description.substring(0, 80)}...<Link onClick={() => {
                         setVisible(true)
                         setProduct(product)
                       }}><strong style={{
