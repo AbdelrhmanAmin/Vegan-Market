@@ -22,9 +22,11 @@ const Nav = ({ user }) => {
   const history = useHistory()
   const i = useRef(0)
   const navbarRef = useRef(null)
+  const iconsRef = useRef(null)
   let logos = [logo, banana, apple, grape, brocoli, tomato]
   useEffect(() => {
     gsap.from(navbarRef.current, { duration: 1, y: -500, ease: "power4.out" })
+    gsap.from(iconsRef.current, { duration: 1.6, y: -500, ease: "expo.easeOut" })
     if (user !== '') {
       let arr = user.name.split(' ')
       if (arr.length > 1) { setUsername(arr[arr.length - 1]) }
@@ -46,7 +48,7 @@ const Nav = ({ user }) => {
           <h3>Vegan</h3>
         </Link>
       </div>
-      <div className='nav-flex-right'>
+      <div className='nav-flex-right' ref={iconsRef}>
         <Link to={{ pathname: `/Cart` }} className="flex-right-header my-3">
           <div className="main-username" >
             <img src={placeholder} width="25" alt="icon" className="user-icon" />

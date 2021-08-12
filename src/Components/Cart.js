@@ -1,8 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
-import {
-  Link
-} from 'react-router-dom';
-import Product from './Product';
+import React, { useEffect, useRef } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { fetchOrders, fetchProducts, removeOrder } from '../Actions'
 import './cart.css';
@@ -12,8 +8,6 @@ import { gsap } from "gsap";
 const Cart = ({ currentUser, cart, products }) => {
   const boxes = useRef(null)
   const dispatch = useDispatch()
-  const [visible, setVisible] = useState(false)
-  const [productX, setProduct] = useState(0)
   useEffect(() => {
     dispatch(fetchOrders(currentUser.id))
     dispatch(fetchProducts())
@@ -43,19 +37,20 @@ const Cart = ({ currentUser, cart, products }) => {
         {
           Object.keys(cart).map((key) => {
             return (
-              <div className='order-container'>
+              <div className='order-container' id={key}  >
                 <div className='info-div'>
                   <h3>{products[key * 1 - 1].name}</h3>
                   <div className='remove-container'>
                     <div className='empty-bg'></div>
                     <button className='remove' onClick={() => {
                       removeOrder(cart[key].id)
-                      document.getElementById(key).remove()
+                      gsap.to(document.getElementById(key), { duration: 1, ease: "power4.out", rotation: 360, scale: 0 })
+                      setTimeout(() => { document.getElementById(key).remove() }, 800)
                     }}>x </button>
                   </div>
                 </div>
 
-                <div id={key} className='order-flex box'>
+                <div className='order-flex box'>
                   <div className='overlay'></div>
                   <p className='price'>{products[key * 1 - 1].price}$</p>
                   <div className='order-img-div'>
@@ -65,15 +60,6 @@ const Cart = ({ currentUser, cart, products }) => {
               </div>
             )
           })
-        }
-        {
-          visible ? (
-            <div>
-              <Product product={productX} setVisible={setVisible} />
-              <div className='layer'></div>
-            </div>
-          )
-            : null
         }
       </div>
     </div>

@@ -70,7 +70,8 @@ const Home = ({ currentUser, cart, products }) => {
                     {
                       cart[product.id] === undefined ? (<button className='cart-off' id={product.id} onClick={() => {
                         createOrder(product.id, currentUser.id)
-                        document.getElementById(product.id).outerHTML = '<div></div>'
+                        gsap.to(document.getElementById(product.id), { duration: 1, ease: "power4.out", x: -2000 })
+                        setTimeout(() => { document.getElementById(product.id).outerHTML = '<div></div>' }, 900)
                       }}>Add To<FaCartArrowDown color='inherit' fontSize='1.5rem' /></button>) : <div></div>
                     }
                   </div>
