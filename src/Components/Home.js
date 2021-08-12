@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Nav from './Nav';
 import main from '../assets/main.png';
 import arrow from '../assets/arrow.png';
 import { Link } from 'react-router-dom';
 import { FaCaretSquareRight } from "react-icons/fa";
+import { gsap } from "gsap";
+
 const Home = () => {
+  const sectionRef1 = useRef(null);
+  const sectionRef2 = useRef(null);
   const [cats, setCats] = useState(9)
   const [likes, setLikes] = useState(5)
   const handleCats = (e) => {
@@ -21,12 +25,16 @@ const Home = () => {
       document.getElementById('like-target').classList.remove('animation')
     }, 800)
   }
+  useEffect(() => {
+    gsap.from(sectionRef1.current, { duration: 4, x: -500, ease: "power4.out" })
+    gsap.from(sectionRef2.current, { duration: 4, x: 500, ease: "power4.out" })
+  }, [])
   return (
     <div>
       <Nav />
       <main className='home-container'>
 
-        <section className='section-1'>
+        <section className='section-1' ref={sectionRef1}>
 
           <h1 className='bracket-1'>[</h1>
           <div className='content'>
@@ -44,7 +52,7 @@ const Home = () => {
           </div>
           <h1 className='bracket-2'>]</h1>
         </section>
-        <section className='section-2'>
+        <section className='section-2' ref={sectionRef2}>
           <div className='home-img'>
             <img src={main} className='cat-main' />
             <div className='hearts-container'>
