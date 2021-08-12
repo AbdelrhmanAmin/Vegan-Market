@@ -23,9 +23,11 @@
   left: -10px;
   z-index: 2;
   transition: all 0.3s ease-in-out;
+  display: none;
 }
 .order-flex:hover .overlay {
   background-color: rgba(0, 0, 0, 0.2);
+  display: block;
 }
 .order-desc {
   padding: 20px;

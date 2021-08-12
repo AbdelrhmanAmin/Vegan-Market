@@ -23,7 +23,16 @@ const Home = ({ currentUser, cart, products }) => {
     if (boxes.current) {
       gsap.from('.box', {
         duration: 2,
-        y: -2500,
+        x: -2500,
+        opacity: 0,
+        delay: 0.5,
+        stagger: 0.2,
+        ease: "power4.out",
+        force3D: true
+      });
+      gsap.from('.box-img', {
+        duration: 0.8,
+        x: -2500,
         delay: 0.5,
         stagger: 0.2,
         ease: "power4.out",
@@ -38,28 +47,33 @@ const Home = ({ currentUser, cart, products }) => {
         {
           products.length > 0 ? (
             products.map((product) => (
-              <div key={product.id} className='box'>
-                <div className='product-img-div'>
+              <div className='product-container' key={product.id} >
+                <div className='box-img product-img-div'>
+                  <div className='overlay-2'></div>
                   <p>{product.price}.00$</p>
-                  <img src={product.URL} alt='URL' />
+                  <div className='img-container'>
+                    <img src={product.URL} alt='URL' />
+                  </div>
                 </div>
-                <div className='product-desc-div'>
-                  <h3>{product.name}</h3>
-                  {
-                    product.description.length > 160 ? <span>{product.description.substring(0, 140)}...<Link onClick={() => {
-                      setVisible(true)
-                      setProduct(product)
-                    }}><strong style={{
-                      background: 'white',
-                      color: '#ff9500',
-                    }}>READ MORE </strong></Link></span> : <span>{product.description}</span>
-                  }
-                  {
-                    cart[product.id] === undefined ? (<button className='cart-off' id={product.id} onClick={() => {
-                      createOrder(product.id, currentUser.id)
-                      document.getElementById(product.id).outerHTML = '<div></div>'
-                    }}>Add To<FaCartArrowDown color='inherit' fontSize='1.5rem' /></button>) : <div></div>
-                  }
+                <div className='box product-box'>
+                  <div className='product-desc-div'>
+                    <h2>{product.name}</h2>
+                    {
+                      product.description.length > 160 ? <span>{product.description.substring(0, 140)}...<Link onClick={() => {
+                        setVisible(true)
+                        setProduct(product)
+                      }}><strong style={{
+                        background: 'white',
+                        color: '#ff9500',
+                      }}>READ MORE </strong></Link></span> : <span>{product.description}</span>
+                    }
+                    {
+                      cart[product.id] === undefined ? (<button className='cart-off' id={product.id} onClick={() => {
+                        createOrder(product.id, currentUser.id)
+                        document.getElementById(product.id).outerHTML = '<div></div>'
+                      }}>Add To<FaCartArrowDown color='inherit' fontSize='1.5rem' /></button>) : <div></div>
+                    }
+                  </div>
                 </div>
               </div>
             ))
