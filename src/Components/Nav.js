@@ -14,14 +14,17 @@ import brocoli from '../assets/logo-brocoli.png'
 import grape from '../assets/logo-grape.png'
 import tomato from '../assets/logo-tomato.png'
 import placeholder from '../assets/placeholder.jpg'
+import { gsap } from "gsap";
 
 const Nav = ({ user }) => {
   const dispatch = useDispatch()
   const [username, setUsername] = useState(false)
   const history = useHistory()
   const i = useRef(0)
+  const navbarRef = useRef(null)
   let logos = [logo, banana, apple, grape, brocoli, tomato]
   useEffect(() => {
+    gsap.from(navbarRef.current, { duration: 2, y: -500, ease: "power4.out" })
     if (user !== '') {
       let arr = user.name.split(' ')
       if (arr.length > 1) { setUsername(arr[arr.length - 1]) }
@@ -35,7 +38,7 @@ const Nav = ({ user }) => {
     }, 3000)
   }, [user])
   return (
-    <div className='nav-flex'>
+    <div className='nav-flex' ref={navbarRef}>
       <div>
         <Link to='/' className='logo-container'>
           <img src={logo} width='75' height='75' alt='logo' className='logo l-1' id='logo' />
