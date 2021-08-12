@@ -24,7 +24,7 @@ const Nav = ({ user }) => {
   const navbarRef = useRef(null)
   let logos = [logo, banana, apple, grape, brocoli, tomato]
   useEffect(() => {
-    gsap.from(navbarRef.current, { duration: 2, y: -500, ease: "power4.out" })
+    gsap.from(navbarRef.current, { duration: 1, y: -500, ease: "power4.out" })
     if (user !== '') {
       let arr = user.name.split(' ')
       if (arr.length > 1) { setUsername(arr[arr.length - 1]) }

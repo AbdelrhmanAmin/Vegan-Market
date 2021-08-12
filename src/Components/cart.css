@@ -1,6 +1,7 @@
 .orders-flex {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  margin: 40px 0;
 }
 .order-flex {
   display: flex;
@@ -12,6 +13,19 @@
   z-index: 0;
   flex-direction: column;
   position: relative;
+  margin-top: 65px;
+}
+.overlay {
+  position: absolute;
+  width: 406px;
+  height: 113%;
+  top: -1%;
+  left: -10px;
+  z-index: 2;
+  transition: all 0.3s ease-in-out;
+}
+.order-flex:hover .overlay {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 .order-desc {
   padding: 20px;
@@ -90,7 +104,14 @@
 #refresh {
   display: none;
 }
+.order-container {
+  position: relative;
+}
 .info-div {
+  position: absolute;
+  width: 408px;
+  left: 5%;
+  top: 5%;
   display: flex;
   background: #ff9500;
   justify-content: space-between;

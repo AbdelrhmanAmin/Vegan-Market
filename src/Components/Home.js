@@ -26,8 +26,8 @@ const Home = () => {
     }, 800)
   }
   useEffect(() => {
-    gsap.from(sectionRef1.current, { duration: 5, x: -500, ease: "power4.out" })
-    gsap.from(sectionRef2.current, { duration: 4, x: 500, ease: "power4.out" })
+    gsap.from(sectionRef1.current, { duration: 2, x: -500, ease: "power4.out" })
+    gsap.from(sectionRef2.current, { duration: 2.5, x: 500, ease: "power4.out" })
   }, [])
   return (
     <div>
