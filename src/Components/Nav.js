@@ -21,9 +21,9 @@ const Nav = ({ user }) => {
   const [username, setUsername] = useState(false)
   const history = useHistory()
   const i = useRef(0)
+  let logos = [logo, banana, apple, grape, brocoli, tomato]
   const navbarRef = useRef(null)
   const iconsRef = useRef(null)
-  let logos = [logo, banana, apple, grape, brocoli, tomato]
   useEffect(() => {
     gsap.from(navbarRef.current, { duration: 1, y: -500, ease: "power4.out" })
     gsap.from(iconsRef.current, { duration: 1.6, y: -500, ease: "expo.easeOut" })
@@ -38,7 +38,7 @@ const Nav = ({ user }) => {
         i.current = 0
       }
     }, 3000)
-  }, [user])
+  }, [])
   return (
     <div className='nav-flex' ref={navbarRef}>
       <div>

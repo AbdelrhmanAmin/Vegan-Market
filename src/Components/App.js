@@ -21,8 +21,8 @@ function App() {
           <Route path='/Signup' exact component={Signup} />
           <Route path='/Login' exact component={Login} />
           <ProtectedRoute path='/' exact component={Home} />
-          <ProtectedRoute path='/Market' exact component={Market} />
-          <ProtectedRoute path='/Cart' exact component={Cart} />
+          <ProtectedRoute path='/Market' component={Market} />
+          <ProtectedRoute path='/Cart' component={Cart} />
         </Switch>
       </Router>
     </div>

@@ -38,12 +38,15 @@ const Home = ({ currentUser, cart, products }) => {
         ease: "power4.out",
         force3D: true
       });
+      setTimeout(() => { document.getElementById('layer-loading').remove() }, 2200)
     }
-  }, [currentUser])
+  }, [])
   return (
     <div>
       <Nav />
       <div className='product-grid' ref={boxes}>
+        <div id='layer-loading'>
+        </div>
         {
           products.length > 0 ? (
             products.map((product) => (

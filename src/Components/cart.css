@@ -17,7 +17,7 @@
 }
 .overlay {
   position: absolute;
-  width: 406px;
+  width: 401px;
   height: 113%;
   top: -1%;
   left: -10px;
@@ -25,7 +25,7 @@
   transition: all 0.3s ease-in-out;
 }
 .order-flex:hover > .overlay {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 136, 0, 0.2);
 }
 .order-desc {
   padding: 20px;
