@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { fetchOrders, fetchProducts, createOrder } from '../Actions';
 import Product from './Product';
 import './market.css';
 import './home.css';
 import { FaCartArrowDown } from "react-icons/fa";
+import { gsap } from "gsap";
 
 import {
   Link, useHistory
@@ -13,21 +14,31 @@ import Nav from './Nav';
 
 const Home = ({ currentUser, cart, products }) => {
   const dispatch = useDispatch()
-
+  const boxes = useRef(null)
   const [visible, setVisible] = useState(false)
   const [productX, setProduct] = useState(0)
   useEffect(() => {
     dispatch(fetchOrders(currentUser.id))
     dispatch(fetchProducts())
+    if (boxes.current) {
+      gsap.from('.box', {
+        duration: 2,
+        y: -2500,
+        delay: 0.5,
+        stagger: 0.2,
+        ease: "power4.out",
+        force3D: true
+      });
+    }
   }, [currentUser])
   return (
     <div>
       <Nav />
-      <div className='product-grid'>
+      <div className='product-grid' ref={boxes}>
         {
           products.length > 0 ? (
             products.map((product) => (
-              <div key={product.id}>
+              <div key={product.id} className='box'>
                 <div className='product-img-div'>
                   <p>{product.price}.00$</p>
                   <img src={product.URL} alt='URL' />
