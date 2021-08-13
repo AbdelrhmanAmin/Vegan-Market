@@ -44,15 +44,15 @@ const Nav = ({ user }) => {
     <div className='nav-flex' ref={navbarRef}>
       <div>
         <Link to='/' className='logo-container'>
-          <img src={logo} width='75' height='75' alt='logo' className='logo l-1' id='logo' />
+          <img src={logo} alt='logo' className='logo l-1' id='logo' />
           <h2>Market</h2>
           <h3>Vegan</h3>
         </Link>
       </div>
       <div className='nav-flex-right' ref={iconsRef}>
         <Link to='/Cart' className="flex-right-header my-3">
-          <div className="main-username" >
-            <img src={placeholder} width="25" alt="icon" className="user-icon" />
+          <div className="main-username-div" >
+            <img src={placeholder} alt="icon" className="user-icon" />
             <strong className="main-username">{username ? username : user.name}</strong>
           </div>
         </Link>

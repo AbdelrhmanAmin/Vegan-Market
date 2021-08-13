@@ -4,7 +4,8 @@ button {
 .product-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  margin: 40px 0;
+  grid-gap: 40px 0;
+  margin: 40px;
 }
 
 .product-box {
@@ -19,7 +20,7 @@ button {
 }
 .overlay-2 {
   position: absolute;
-  width: 308px;
+  width: 288px;
   height: 140%;
   top: -20%;
   left: 0px;
@@ -37,10 +38,10 @@ button {
   position: absolute;
   z-index: 2;
   height: 205px;
-  box-shadow: rgb(0 0 0 / 25%) 0px 54px 55px, rgb(0 0 0 / 12%) 0px -12px 30px,
+  /* box-shadow: rgb(0 0 0 / 25%) 0px 54px 55px, rgb(0 0 0 / 12%) 0px -12px 30px,
     rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px,
-    rgb(0 0 0 / 9%) 0px -3px 5px;
-  width: 308px;
+    rgb(0 0 0 / 9%) 0px -3px 5px; */
+  width: 90%;
   left: 15px;
   top: 9%;
 }

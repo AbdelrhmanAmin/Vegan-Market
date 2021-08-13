@@ -20,6 +20,7 @@
   background-color: rgb(255 149 0);
   transform: translatey(5px);
   animation: float-1 4s ease-in-out infinite;
+  width: 75px;
 }
 .logo-container h2 {
   color: rgb(255 149 0);
@@ -84,4 +85,25 @@
   position: absolute;
   left: 3px;
   top: 3px;
+  width: 25px;
+}
+@media only screen and (max-width: 600px) {
+  .main-username {
+    display: none;
+  }
+  .flex-right-header {
+    width: 11%;
+    justify-content: center;
+  }
+  .logo-container h3,
+  .logo-container h2 {
+    font-size: 20px;
+  }
+  .user-icon {
+    border-radius: 50%;
+    position: relative;
+    left: 0;
+    top: 2px;
+    width: 25px;
+  }
 }
