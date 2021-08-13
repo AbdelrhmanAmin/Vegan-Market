@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createOrder } from '../Actions'
 
 const Product = ({ product, currentUser, cart, setVisible }) => {
   return (

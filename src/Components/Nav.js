@@ -32,7 +32,6 @@ const Nav = ({ user }) => {
     }
     const int = setInterval(() => {
       document.getElementById('logo').src = logos[i]
-      console.log(i)
       // eslint-disable-next-line react-hooks/exhaustive-deps
       i += 1
       if (i === logos.length) {

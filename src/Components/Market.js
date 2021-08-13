@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { fetchOrders, fetchProducts, createOrder } from '../Actions';
 import Product from './Product';
@@ -37,6 +37,7 @@ const Home = ({ currentUser, cart, products }) => {
       force3D: true
     });
     setTimeout(() => { document.getElementById('layer-loading').remove() }, 2200)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
     <div>
