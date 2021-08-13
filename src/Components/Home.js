@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { FaCaretSquareRight } from "react-icons/fa";
 import { gsap } from "gsap";
 
+
+
 const Home = () => {
   const sectionRef1 = useRef(null);
   const sectionRef2 = useRef(null);
@@ -33,6 +35,7 @@ const Home = () => {
     gsap.from(sectionRef1.current, { duration: 2, x: -500, ease: "power4.out" })
     gsap.from(sectionRef2.current, { duration: 2.5, x: 500, ease: "power4.out" })
   }, [])
+
   return (
     <div>
       <Nav />
