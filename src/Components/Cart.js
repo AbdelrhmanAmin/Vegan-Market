@@ -6,36 +6,31 @@ import Nav from './Nav';
 import { gsap } from "gsap";
 
 const Cart = ({ currentUser, cart, products }) => {
-  const boxes = useRef(null)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchOrders(currentUser.id))
     dispatch(fetchProducts())
-    if (boxes.current) {
-      gsap.from('.box', {
-        duration: 2,
-        y: -2500,
-        delay: 0.5,
-        stagger: 0.2,
-        ease: "power4.out",
-        force3D: true
-      });
-      gsap.from('.info-div', {
-        duration: 0.8,
-        y: -2500,
-        delay: 0.5,
-        stagger: 0.2,
-        ease: "power4.out",
-        force3D: true
-      });
-      setTimeout(() => { document.getElementById('layer-loading').remove() }, 2200)
-    }
+    gsap.from('.box', {
+      duration: 2,
+      y: -2500,
+      delay: 0.5,
+      stagger: 0.2,
+      ease: "power4.out",
+      force3D: true
+    });
+    gsap.from('.info-div', {
+      duration: 0.8,
+      y: -2500,
+      delay: 0.5,
+      stagger: 0.2,
+      ease: "power4.out",
+      force3D: true
+    });
   }, [])
   return (
     <div>
       <Nav />
-      <div className='orders-flex' ref={boxes}>
-        <div id='layer-loading'></div>
+      <div className='orders-flex'>
         {
           Object.keys(cart).map((key) => {
             return (
