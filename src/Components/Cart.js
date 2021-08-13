@@ -26,6 +26,7 @@ const Cart = ({ currentUser, cart, products }) => {
       ease: "power4.out",
       force3D: true
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
     <div>

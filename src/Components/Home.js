@@ -61,7 +61,7 @@ const Home = () => {
         </section>
         <section className='section-2' ref={sectionRef2}>
           <div className='home-img'>
-            <img src={main} className='cat-main' />
+            <img src={main} className='cat-main' alt='homepage design' />
             <div className='hearts-container'>
               <div id='heart1' className='heart-div' onClick={() => handleCats()}>
                 <div id='cat-target'>😸</div>
