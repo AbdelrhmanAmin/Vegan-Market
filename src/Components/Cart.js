@@ -34,7 +34,7 @@ const Cart = ({ currentUser, cart, products }) => {
         {
           Object.keys(cart).map((key) => {
             return (
-              <div className='order-container' id={key}  >
+              <div className='order-container' id={key} key={key} >
                 <div className='info-div'>
                   <h3>{products[key * 1 - 1].name}</h3>
                   <div className='remove-container'>
