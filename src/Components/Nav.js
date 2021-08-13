@@ -19,8 +19,8 @@ const Nav = ({ user }) => {
   const dispatch = useDispatch()
   const [username, setUsername] = useState(false)
   const history = useHistory()
-  const i = useRef(0)
   let logos = [logo, banana, apple, grape, brocoli, tomato]
+  let i = 0;
   const navbarRef = useRef(null)
   const iconsRef = useRef(null)
   useEffect(() => {
@@ -30,13 +30,16 @@ const Nav = ({ user }) => {
       let arr = user.name.split(' ')
       if (arr.length > 1) { setUsername(arr[arr.length - 1]) }
     }
-    setInterval(() => {
-      document.getElementById('logo').src = logos[i.current]
-      i.current += 1
-      if (i.current === logos.length) {
-        i.current = 0
+    const int = setInterval(() => {
+      document.getElementById('logo').src = logos[i]
+      console.log(i)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      i += 1
+      if (i === logos.length) {
+        i = 0
       }
     }, 3000)
+    return () => clearInterval(int)
   }, [])
   return (
     <div className='nav-flex' ref={navbarRef}>
