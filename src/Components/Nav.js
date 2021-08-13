@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { logOut } from '../Actions';
 import { useDispatch, connect } from 'react-redux';
-import { FaCartArrowDown } from "react-icons/fa";
 import { GoSignOut } from "react-icons/go";
 import './nav.css';
 import {
@@ -49,7 +48,7 @@ const Nav = ({ user }) => {
         </Link>
       </div>
       <div className='nav-flex-right' ref={iconsRef}>
-        <Link to={{ pathname: `/Cart` }} className="flex-right-header my-3">
+        <Link to='/Cart' className="flex-right-header my-3">
           <div className="main-username" >
             <img src={placeholder} width="25" alt="icon" className="user-icon" />
             <strong className="main-username">{username ? username : user.name}</strong>

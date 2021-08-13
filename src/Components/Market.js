@@ -8,43 +8,40 @@ import { FaCartArrowDown } from "react-icons/fa";
 import { gsap } from "gsap";
 
 import {
-  Link, useHistory
+  Link
 } from 'react-router-dom';
 import Nav from './Nav';
 
 const Home = ({ currentUser, cart, products }) => {
   const dispatch = useDispatch()
-  const boxes = useRef(null)
   const [visible, setVisible] = useState(false)
   const [productX, setProduct] = useState(0)
   useEffect(() => {
     dispatch(fetchOrders(currentUser.id))
     dispatch(fetchProducts())
-    if (boxes.current) {
-      gsap.from('.box', {
-        duration: 2,
-        x: -2500,
-        opacity: 0,
-        delay: 0.5,
-        stagger: 0.2,
-        ease: "power4.out",
-        force3D: true
-      });
-      gsap.from('.box-img', {
-        duration: 0.8,
-        x: -2500,
-        delay: 0.5,
-        stagger: 0.2,
-        ease: "power4.out",
-        force3D: true
-      });
-      setTimeout(() => { document.getElementById('layer-loading').remove() }, 2200)
-    }
+    gsap.from('.box', {
+      duration: 2,
+      x: -2500,
+      opacity: 0,
+      delay: 0.5,
+      stagger: 0.2,
+      ease: "power4.out",
+      force3D: true
+    });
+    gsap.from('.box-img', {
+      duration: 0.8,
+      x: -2500,
+      delay: 0.5,
+      stagger: 0.2,
+      ease: "power4.out",
+      force3D: true
+    });
+    setTimeout(() => { document.getElementById('layer-loading').remove() }, 2200)
   }, [])
   return (
     <div>
       <Nav />
-      <div className='product-grid' ref={boxes}>
+      <div className='product-grid'>
         <div id='layer-loading'>
         </div>
         {
