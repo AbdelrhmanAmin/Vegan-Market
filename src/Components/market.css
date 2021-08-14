@@ -198,6 +198,9 @@ button {
   }
 }
 @media only screen and (max-width: 930px) {
+  .pop-up {
+    left: 25%;
+  }
   .product-grid {
     grid-template-columns: 1fr 1fr;
     margin: 40px 50px;
