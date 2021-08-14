@@ -25,6 +25,10 @@
 - React-Redux
 - Thunk
 
+## Video walkthrough 
+
+[![Watch the video](./homepage.png)](https://www.loom.com/share/6fecce4cb0fd4b36bd7dee9b5f84c324)
+
 ## LIVE DEMO
 
 NOTE: THIS IS A BETA DEMO, ERRORS AND BUGS ARE EXPECTED. <br>
