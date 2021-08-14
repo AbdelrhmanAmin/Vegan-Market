@@ -1,0 +1,210 @@
+* {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #fff !important;
+}
+
+/* NAV */
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 25px;
+}
+
+nav > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-btn {
+  display: flex;
+  padding: 9px 20px;
+  border-radius: 4px;
+  background-color: #0077c5;
+  color: white;
+  border: 1px solid black;
+  align-items: baseline;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.nav-btn:checked {
+  border: 1px solid black;
+}
+
+.nav-btn i {
+  margin-right: 10px;
+}
+
+nav div span {
+  font-size: 12px;
+  margin: 0 0 3px 3px;
+  color: #717171;
+}
+
+nav div a {
+  color: #1689d0;
+  font-size: 12px;
+}
+
+/* MAIN */
+.sign-container {
+  max-width: 380px;
+  margin: 25px auto;
+}
+
+.links-container {
+  display: flex;
+  justify-content: center;
+  color: #f3558e;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+}
+/* FORM */
+.form-container {
+  background-color: #cacaca;
+  margin-top: 15px;
+  box-shadow: 1px 1px 1px -1px #000000;
+}
+
+.login {
+  padding: 30px 30px 0 30px;
+  display: flex;
+  flex-direction: column;
+  color: #343a40;
+  border: 10px solid #373333e3;
+  border-bottom: 0;
+  background-color: #cacaca;
+}
+
+.login-inverse {
+  padding: 30px 30px 0 30px;
+  display: flex;
+  flex-direction: column;
+  color: #cacaca;
+  background-color: #373333e3;
+  border: 10px solid #cacaca;
+  border-bottom: 0;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #e1e8eb;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.paragraph {
+  text-align: center;
+}
+
+.paragraph p {
+  font-size: 14px;
+}
+
+.paragraph a {
+  cursor: pointer;
+  font-size: 12px;
+  color: #1689d0;
+}
+
+.form {
+  margin: 25px 0 35px 0;
+  font-size: 15px;
+}
+
+.form fieldset {
+  margin-bottom: 35px;
+}
+
+.form fieldset label span {
+  font-size: 10px;
+}
+
+.form input {
+  padding: 9px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-top: 10px;
+}
+
+.form button {
+  padding: 13px;
+  width: 100%;
+  border: 1px solid rgb(224 213 156);
+  background-color: #4c4949;
+  color: #e2f3f5;
+  box-shadow: 0px 1px 3px 1px rgb(0 0 0 / 75%);
+  font-size: 16px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: 'Orbitron', sans-serif;
+}
+.btn-inverse {
+  background-color: #cacaca !important;
+  color: #373333e3 !important;
+  text-transform: uppercase;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.form button:focus {
+  border: 1px solid black;
+}
+
+.form button i {
+  margin-right: 10px;
+}
+
+.footer-form {
+  font-size: 10px;
+  color: #ffffff;
+  text-align: center;
+  background-color: #464343;
+  border: 10px solid #464343;
+  padding: 25px 0;
+  border-top: 0;
+}
+.footer-form-inverse {
+  background-color: #cacaca !important;
+  border: 10px solid #cacaca !important;
+  font-size: 10px;
+  color: #ffffff;
+  text-align: center;
+  padding: 25px 0;
+  border-top: 0;
+}
+.top {
+  display: flex;
+  flex-direction: column;
+}
+.redirect {
+  font-size: 12px;
+  color: #cacaca;
+  text-align: center;
+}
+.redirect a:hover {
+  text-decoration: underline;
+}
+
+.errors {
+  font-size: 13px;
+  color: #b22424;
+}

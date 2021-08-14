@@ -1,0 +1,136 @@
+.orders-flex {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 40px;
+  grid-gap: 40px;
+}
+.order-flex {
+  display: flex;
+  background-color: white;
+  border: 10px solid #ff9500;
+  border-top: 35px solid #ffffff;
+  border-bottom: 30px solid white;
+  z-index: 0;
+  flex-direction: column;
+  position: relative;
+  margin-top: 65px;
+}
+.overlay {
+  position: absolute;
+  width: 106%;
+  left: -10px;
+  height: 113%;
+  top: -1%;
+  z-index: 2;
+  transition: all 0.3s ease-in-out;
+}
+.order-flex:hover > .overlay {
+  background-color: rgba(255, 136, 0, 0.2);
+}
+.order-desc {
+  padding: 20px;
+  width: 750px;
+}
+.order-desc span {
+  margin: auto;
+}
+.order-img-div {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.order-desc a {
+  color: #476899 !important;
+  /* display: block; */
+}
+.order-desc a:hover {
+  text-decoration: underline;
+}
+.remove-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.remove {
+  z-index: 1;
+  font-size: 33px;
+  background: none;
+  color: white;
+  margin-left: auto;
+  cursor: pointer;
+  font-weight: 900;
+  transition: all ease-in-out 1s;
+}
+.empty-bg {
+  padding: 10px;
+  position: absolute;
+  border-radius: 50%;
+  top: 11px;
+  transition: all ease-in 0.3s;
+  background-color: #575859;
+}
+.remove-container:hover > .empty-bg {
+  background-color: #d74700;
+  transform: scale(1.5);
+}
+.remove-container:hover > .remove {
+  transform: scale(1.5);
+}
+.price {
+  position: absolute;
+  left: -2%;
+  top: 55%;
+  padding: 5px;
+  width: 65px;
+  text-align: end;
+  font-weight: bold;
+  background-color: #ff9500;
+  color: white;
+  z-index: 1;
+}
+
+.total {
+  position: absolute;
+  color: black;
+  top: 10%;
+  right: 15%;
+  background: white;
+  border: 5px solid #575859;
+  padding: 8px;
+  z-index: 0;
+  display: block;
+}
+#refresh {
+  display: none;
+}
+.order-container {
+  position: relative;
+}
+.info-div {
+  position: absolute;
+  width: 100%;
+  top: 5%;
+  display: flex;
+  background: #ff9500;
+  justify-content: space-between;
+  border-inline: 1px solid #36363675;
+  padding: 20px;
+  align-items: center;
+  color: white;
+  box-shadow: rgb(0 0 0 / 25%) 0px 54px 55px, rgb(0 0 0 / 12%) 0px -12px 30px,
+    rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px,
+    rgb(0 0 0 / 9%) 0px -3px 5px;
+  z-index: 1;
+}
+
+@media only screen and (max-width: 1028px) {
+  .orders-flex {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .orders-flex {
+    grid-template-columns: 1fr;
+  }
+}
