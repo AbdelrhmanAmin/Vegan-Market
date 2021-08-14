@@ -87,6 +87,19 @@
   top: 3px;
   width: 25px;
 }
+.shop-icon {
+  transition: 0.3s ease-in-out all;
+}
+.out-icon {
+  transition: 0.6s ease-in-out all;
+}
+.out-icon:hover {
+  color: darkred !important;
+}
+.shop-icon:hover {
+  color: white !important;
+}
+
 @media only screen and (max-width: 600px) {
   .main-username {
     display: none;

@@ -19,9 +19,10 @@ export const cartSuccess = (orders) => ({
   orders
 })
 
-export const productSuccess = (products) => ({
+export const productSuccess = (products, payload) => ({
   type: 'PRODUCTS_SUCCESS',
-  products
+  products,
+  payload,
 })
 
 export const createOrder = (productId, userId) => {
@@ -56,7 +57,7 @@ export const removeOrder = (orderId) => {
 export const fetchProducts = () => (dispatch) => {
   fetch(`${API}products`).then((res) => res.json())
     .then((products) => {
-      dispatch(productSuccess(products))
+      dispatch(productSuccess(products, false))
     })
 }
 

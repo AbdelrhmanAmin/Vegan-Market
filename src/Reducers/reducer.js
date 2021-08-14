@@ -4,6 +4,7 @@ const user = ''
 const cart = {}
 const products = []
 const err_msg = ""
+const loading = true
 
 function errorReducer(state = err_msg, action) {
   switch (action.type) {
@@ -40,9 +41,18 @@ function productReducer(state = products, action) {
       return state;
   }
 }
+function loadingReducer(state = loading, action) {
+  switch (action.type) {
+    case 'PRODUCTS_SUCCESS':
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
 
 const reducers = {
-  userReducer, cartReducer, productReducer, errorReducer
+  userReducer, cartReducer, productReducer, errorReducer, loadingReducer
 };
 
 const appReducer = combineReducers(reducers);

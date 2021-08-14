@@ -2,9 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { logOut } from '../Actions';
 import { useDispatch, connect } from 'react-redux';
 import { GoSignOut } from "react-icons/go";
+import { AiFillShop } from "react-icons/ai";
 import './nav.css';
 import {
-  Link, useHistory
+  Link
 } from 'react-router-dom';
 import logo from '../assets/logo.png'
 import apple from '../assets/logo-apple.png'
@@ -18,14 +19,13 @@ import { gsap } from "gsap";
 const Nav = ({ user }) => {
   const dispatch = useDispatch()
   const [username, setUsername] = useState(false)
-  const history = useHistory()
   let logos = [logo, banana, apple, grape, brocoli, tomato]
   let i = 0;
   const navbarRef = useRef(null)
   const iconsRef = useRef(null)
   useEffect(() => {
     gsap.from(navbarRef.current, { duration: 1, y: -500, ease: "power4.out" })
-    gsap.from(iconsRef.current, { duration: 1.6, y: -500, ease: "expo.easeOut" })
+    gsap.from(iconsRef.current, { duration: 1.2, y: -500, ease: "expo.easeOut" })
     if (user !== '') {
       let arr = user.name.split(' ')
       if (arr.length > 1) { setUsername(arr[arr.length - 1]) }
@@ -56,10 +56,12 @@ const Nav = ({ user }) => {
             <strong className="main-username">{username ? username : user.name}</strong>
           </div>
         </Link>
-        <Link className='sign-out' onClick={() => {
+        <Link to='Market'>
+          <AiFillShop color='orange' className='shop-icon' fontSize='2.5rem' />
+        </Link>
+        <Link to='/Login' className='sign-out' onClick={() => {
           dispatch(logOut())
-          history.go(0)
-        }}><GoSignOut color='white' fontSize='2.5rem' /></Link>
+        }}><GoSignOut color='white' className='out-icon' fontSize='2.5rem' /></Link>
       </div>
     </div>
   )

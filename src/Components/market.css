@@ -19,6 +19,10 @@ button {
   border-bottom: 25px solid rgb(255 149 0);
   height: 545px;
 }
+.gif-loading {
+  display: flex;
+  margin: auto;
+}
 .overlay-2 {
   position: absolute;
   width: 100%;
