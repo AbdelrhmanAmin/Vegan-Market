@@ -23,7 +23,7 @@ button {
   position: absolute;
   width: 100%;
   height: 140%;
-  top: -24%;
+  top: -14%;
   left: 0px;
   transition: all 0.3s ease-in-out;
   z-index: 1;
@@ -34,6 +34,7 @@ button {
 }
 .product-container {
   position: relative;
+  background-color: #ff9500;
 }
 .product-img-div {
   position: absolute;
@@ -222,19 +223,6 @@ button {
     font-size: 15px !important;
   }
 }
-/* @media only screen and (max-width: 700px) {
-  .product-grid {
-    grid-template-columns: 1fr;
-    margin: 40px 50px;
-  }
-  .product-box {
-    margin: 0;
-  }
-  .product-img-div {
-    width: 100%;
-    left: 0;
-  }
-} */
 @media only screen and (max-width: 680px) {
   .product-grid {
     display: flex;
