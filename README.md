@@ -31,10 +31,7 @@
 
 ## LIVE DEMO
 
-NOTE: THIS IS A BETA DEMO, ERRORS AND BUGS ARE EXPECTED. <br>
-Also, you might have to refresh the page few times if it doesn't work... <br>
-[Click here](https://musing-wilson-2ffd7e.netlify.app/)
-
+**CURRENTLY NOT AVAILABLE**
 ### Setup
 
 1- Clone the repository
