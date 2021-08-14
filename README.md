@@ -25,6 +25,11 @@
 - React-Redux
 - Thunk
 
+## LIVE DEMO
+
+NOTE: THIS IS A BETA DEMO, ERRORS AND BUGS ARE EXPECTED. <br>
+[Click here](https://musing-wilson-2ffd7e.netlify.app/)
+
 ### Setup
 
 1- Clone the repository
