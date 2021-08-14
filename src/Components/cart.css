@@ -1,12 +1,12 @@
 .orders-flex {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  margin: 40px 0;
+  margin: 40px;
+  grid-gap: 40px;
 }
 .order-flex {
   display: flex;
   background-color: white;
-  margin: 25px;
   border: 10px solid #ff9500;
   border-top: 35px solid #ffffff;
   border-bottom: 30px solid white;
@@ -17,10 +17,10 @@
 }
 .overlay {
   position: absolute;
-  width: 401px;
+  width: 106%;
+  left: -10px;
   height: 113%;
   top: -1%;
-  left: -10px;
   z-index: 2;
   transition: all 0.3s ease-in-out;
 }
@@ -109,8 +109,7 @@
 }
 .info-div {
   position: absolute;
-  width: 408px;
-  left: 5%;
+  width: 100%;
   top: 5%;
   display: flex;
   background: #ff9500;
