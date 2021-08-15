@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { logOut } from '../Actions';
+import { loadingState, logOut } from '../Actions';
 import { useDispatch, connect } from 'react-redux';
 import { GoSignOut } from "react-icons/go";
 import { AiFillShop } from "react-icons/ai";
@@ -14,6 +14,7 @@ import brocoli from '../assets/logo-brocoli.png'
 import grape from '../assets/logo-grape.png'
 import tomato from '../assets/logo-tomato.png'
 import placeholder from '../assets/placeholder.jpg'
+import DelayLink from './DelayLink'
 import { gsap } from "gsap";
 
 const Nav = ({ user }) => {
@@ -50,15 +51,16 @@ const Nav = ({ user }) => {
         </Link>
       </div>
       <div className='nav-flex-right' ref={iconsRef}>
-        <Link to='/Cart' className="flex-right-header my-3">
+
+        <DelayLink className="flex-right-header my-3" delay={500} to='/Cart' onDelayStart={() => dispatch(loadingState())}>
           <div className="main-username-div" >
             <img src={placeholder} alt="icon" className="user-icon" />
             <strong className="main-username">{username ? username : user.name}</strong>
           </div>
-        </Link>
-        <Link to='Market'>
+        </DelayLink>
+        <DelayLink to='Market' delay={500} onDelayStart={() => dispatch(loadingState())}>
           <AiFillShop color='orange' className='shop-icon' fontSize='2.5rem' />
-        </Link>
+        </DelayLink>
         <Link to='/Login' className='sign-out' onClick={() => {
           dispatch(logOut())
         }}><GoSignOut color='white' className='out-icon' fontSize='2.5rem' /></Link>

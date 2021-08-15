@@ -92,11 +92,12 @@
 
 .total {
   position: absolute;
-  color: black;
-  top: 10%;
+  color: #000000;
+  top: 25%;
+  width: 10%;
   right: 15%;
   background: white;
-  border: 5px solid #575859;
+  border: 5px solid #ffa500;
   padding: 8px;
   z-index: 0;
   display: block;

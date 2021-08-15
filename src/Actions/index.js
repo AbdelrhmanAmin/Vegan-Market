@@ -19,16 +19,20 @@ export const cartSuccess = (orders) => ({
   orders
 })
 
-export const productSuccess = (products, payload) => ({
+export const productSuccess = (products, loading) => ({
   type: 'PRODUCTS_SUCCESS',
   products,
-  payload,
+  loading,
 })
 
-export const createOrder = (productId, userId) => {
+export const loadingState = () => ({
+  type: 'SET_LOADING',
+})
+
+export const createOrder = (productId, productName, productPrice, userId) => {
   fetch(`${API}orders`, {
     method: 'post',
-    body: JSON.stringify({ product_id: productId, user_id: userId }),
+    body: JSON.stringify({ product_id: productId, product_name: productName, product_price: productPrice, user_id: userId }),
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
   })
 }
@@ -36,10 +40,10 @@ export const createOrder = (productId, userId) => {
 export const fetchOrders = (userId) => (dispatch) => {
   fetch(`${API}orders`).then((res) => res.json())
     .then((orders) => {
-      let ordered = {}
+      let ordered = []
       for (let order of orders) {
         if (order.user_id === userId) {
-          ordered[order.product_id] = order
+          ordered.push(order)
         }
       }
       dispatch(cartSuccess(ordered))

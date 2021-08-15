@@ -20,7 +20,7 @@ const Home = ({ currentUser, cart, products, loading }) => {
     dispatch(fetchOrders(currentUser.id))
     dispatch(fetchProducts())
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [loading])
   return (
     <div>
       <Nav />
@@ -51,8 +51,8 @@ const Home = ({ currentUser, cart, products, loading }) => {
                         }}>READ MORE </strong></Link></span> : <span>{product.description}</span>
                       }
                       {
-                        cart[product.id] === undefined ? (<button className='cart-off' id={product.id} onClick={() => {
-                          createOrder(product.id, currentUser.id)
+                        cart.find(x => x.product_id === product.id) === undefined ? (<button className='cart-off' id={product.id} onClick={() => {
+                          createOrder(product.id, product.name, product.price, currentUser.id)
                           gsap.to(document.getElementById(product.id), { duration: 1, ease: "power4.out", x: -2000 })
                           setTimeout(() => { document.getElementById(product.id).outerHTML = '<div></div>' }, 900)
                         }}>Add To<FaCartArrowDown color='inherit' fontSize='1.5rem' /></button>) : <div></div>
