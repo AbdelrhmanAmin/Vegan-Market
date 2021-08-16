@@ -65,13 +65,14 @@ export const fetchProducts = () => (dispatch) => {
     })
 }
 
-export const createUser = (name, email, password) => (dispatch) => {
+export const createUser = (formData) => (dispatch) => {
+  console.log(formData.get('name'), formData.get('email'), formData.get('password'), formData.get('image'))
   fetch(`${API}users`, {
     method: 'post',
-    body: JSON.stringify({ name, email, password }),
-    headers: { 'Content-type': 'application/json; charset=UTF-8' },
-  }).then((res) => res.json())
+    body: formData
+  })
     .then((response) => {
+      console.log(response)
       if (response.message) {
         dispatch(error(response.message))
       }
