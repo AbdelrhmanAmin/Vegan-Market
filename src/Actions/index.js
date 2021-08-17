@@ -1,5 +1,6 @@
 import decode from 'jwt-decode';
-const API = 'https://powerful-everglades-09026.herokuapp.com/'
+const API = 'https://stormy-journey-83565.herokuapp.com/'
+
 export const logIn = (user) => ({
   type: 'LOGIN',
   user,
@@ -66,10 +67,10 @@ export const fetchProducts = () => (dispatch) => {
 }
 
 export const createUser = (formData) => (dispatch) => {
-  console.log(formData.get('name'), formData.get('email'), formData.get('password'), formData.get('image'))
+  console.log({ name: formData.get('name'), email: formData.get('email'), password: formData.get('password'), image: formData.get('image') })
   fetch(`${API}users`, {
-    method: 'post',
-    body: formData
+    method: 'POST',
+    body: formData,
   })
     .then((response) => {
       console.log(response)
