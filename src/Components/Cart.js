@@ -5,13 +5,18 @@ import './cart.css';
 import Nav from './Nav';
 import { gsap } from "gsap";
 
-const Cart = ({ currentUser, cart, products, loading }) => {
+const Cart = ({ currentUser, cart, userTest, cartTest, productsTest, products, loading, loadingTest }) => {
   const [total, setTotal] = useState(0)
   const dispatch = useDispatch()
+  if (!loadingTest) { loading = loadingTest }
+  if (cartTest) { cart = cartTest }
+  if (productsTest) { products = productsTest }
   useEffect(() => {
-    dispatch(fetchOrders(currentUser.id))
-    dispatch(fetchProducts())
-    setTotal(cart.reduce((sum, p) => { return sum += p.product_price }, 0))
+    if (!userTest) {
+      dispatch(fetchOrders(currentUser.id))
+      dispatch(fetchProducts())
+    }
+    setTotal(cart.reduce((sum, p) => { return sum + p.product_price }, 0))
     if (!loading) {
       gsap.from('.box', {
         duration: 2,
@@ -34,21 +39,21 @@ const Cart = ({ currentUser, cart, products, loading }) => {
   }, [loading])
   return (
     <div>
-      <Nav />
+      <Nav userTest={userTest} />
       {loading ? <img src='https://cdn.dribbble.com/users/451713/screenshots/3853529/_____.gif' className='gif-loading' alt='gif-loading' /> :
-        <div className='orders-flex'>
-          <div className='total'>
-            <strong>Total:</strong> {total}$
+        <div className='orders-flex' data-testid='orders-container'>
+          <div className='total' data-testid='total'>
+            <strong >Total:</strong> {total}$
       </div>
           {
             cart.map((order) => {
               return (
-                <div className='order-container' id={order.id} key={order.id} >
+                <div className='order-container' data-testid={`order-container${order.id}`} id={order.id} key={order.id} >
                   <div className='info-div'>
-                    <h3>{order.name}</h3>
+                    <h3 data-testid={`name${order.id}`}>{order.name}</h3>
                     <div className='remove-container'>
                       <div className='empty-bg'></div>
-                      <button className='remove' onClick={() => {
+                      <button className='remove' data-testid={`remove${order.id}`} onClick={() => {
                         setTotal(total - order.product_price)
                         removeOrder(order.id)
                         gsap.to(document.getElementById(order.id), { duration: 1, ease: "power4.out", rotation: 360, scale: 0 })
@@ -59,7 +64,7 @@ const Cart = ({ currentUser, cart, products, loading }) => {
 
                   <div className='order-flex box'>
                     <div className='overlay'></div>
-                    <p className='price'>{order.product_price}$</p>
+                    <p className='price' data-testid={`price${order.id}`}>{order.product_price}$</p>
                     <div className='order-img-div'>
                       <img src={products[order.product_id * 1 - 1].URL} alt='URL' width='250' height='250' />
                     </div>
