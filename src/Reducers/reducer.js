@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 const user = ''
-const cart = {}
+const cart = []
 const products = []
 const err_msg = ""
 const loading = true
@@ -44,7 +44,9 @@ function productReducer(state = products, action) {
 function loadingReducer(state = loading, action) {
   switch (action.type) {
     case 'PRODUCTS_SUCCESS':
-      return action.payload;
+      return action.loading;
+    case 'SET_LOADING':
+      return true;
     default:
       return state;
   }

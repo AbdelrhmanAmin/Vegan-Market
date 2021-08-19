@@ -8,6 +8,7 @@ const Signup = ({ error }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState(0);
+  const [image, setImage] = useState(null);
   const history = useHistory();
   const dispatch = useDispatch();
   const handleChange = (e) => {
@@ -52,7 +53,12 @@ const Signup = ({ error }) => {
       target.innerHTML = "Password must be longer than 6 charcaters."
     }
     if (password.length > 5 && test.test(name.replace(' ', '')) && re.test(String(email).toLowerCase())) {
-      dispatch(createUser(name, email, password));
+      const form = new FormData()
+      form.append('name', name)
+      form.append('email', email)
+      form.append('password', password)
+      form.append('image', image)
+      dispatch(createUser(form));
       let container = document.querySelector('.sign-container')
       container.innerHTML = ''
       let gif = document.createElement('img')
@@ -89,6 +95,13 @@ const Signup = ({ error }) => {
             <fieldset>
               <label>
                 Password: <input onChange={e => handleChange(e)} type="password" name="password" required />
+              </label>
+              <span id='pw-err'></span>
+            </fieldset>
+            <fieldset>
+              <label>
+                Image: <input type="file" name="image"
+                  onChange={(e) => setImage(e.target.files[0])} />
               </label>
               <span id='pw-err'></span>
             </fieldset>

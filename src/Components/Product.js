@@ -1,25 +1,21 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-const Product = ({ product, currentUser, cart, setVisible }) => {
+const Product = ({ product, setVisible }) => {
   return (
-    <div className='pop-up'>
+    <div className='pop-up' data-testid='popup'>
       <div className='product-img-div-pop-up'>
-        <button className='exit-popup' onClick={() => setVisible(false)}>x</button>
+        <button className='exit-popup' data-testid='cancel' onClick={() => setVisible(false)}>x</button>
         <p>{product.price}$</p>
-        <img src={product.URL} alt='URL' />
+        <img src={product.URL} alt='IMG' data-testid='IMG' />
       </div>
       <div className='product-desc-div-pop-up'>
-        <h3>{product.name}</h3>
-        <span>{product.description}</span>
+        <h3 data-testid='product-name'>{product.name}</h3>
+        <span data-testid='product-desc'>{product.description}</span>
       </div>
     </div>
   )
+
 }
 
-const mapStateToProps = (state) => ({
-  currentUser: state.userReducer,
-  cart: state.cartReducer,
-});
 
-export default connect(mapStateToProps, null)(Product)
+export default Product
