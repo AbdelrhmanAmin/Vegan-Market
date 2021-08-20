@@ -25,7 +25,7 @@ const Nav = ({ user, userTest }) => {
   const navbarRef = useRef(null)
   const iconsRef = useRef(null)
   useEffect(() => {
-    if (!user) {
+    if (!localStorage.getItem('token')) {
       dispatch(logIn(userTest))
     }
     gsap.from(navbarRef.current, { duration: 1, y: -500, ease: "power4.out" })

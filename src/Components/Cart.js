@@ -4,6 +4,7 @@ import { fetchOrders, fetchProducts, removeOrder } from '../Actions'
 import './cart.css';
 import Nav from './Nav';
 import { gsap } from "gsap";
+import { Image, Transformation, CloudinaryContext } from 'cloudinary-react';
 
 const Cart = ({ currentUser, cart, userTest, cartTest, productsTest, products, loading, loadingTest }) => {
   const [total, setTotal] = useState(0)
@@ -40,6 +41,11 @@ const Cart = ({ currentUser, cart, userTest, cartTest, productsTest, products, l
   return (
     <div>
       <Nav userTest={userTest} />
+      <CloudinaryContext cloudName='abdoamin' >
+        <Image publicId="Vegan-Market/f2qd4n8kbtwfcx28x23g3quhtjtu" >
+          <Transformation height="200" width="200" crop="crop" gravity="face" crop="thumb" />
+        </Image>
+      </CloudinaryContext >
       {loading ? <img src='https://cdn.dribbble.com/users/451713/screenshots/3853529/_____.gif' className='gif-loading' alt='gif-loading' /> :
         <div className='orders-flex' data-testid='orders-container'>
           <div className='total' data-testid='total'>
@@ -50,7 +56,7 @@ const Cart = ({ currentUser, cart, userTest, cartTest, productsTest, products, l
               return (
                 <div className='order-container' data-testid={`order-container${order.id}`} id={order.id} key={order.id} >
                   <div className='info-div'>
-                    <h3 data-testid={`name${order.id}`}>{order.name}</h3>
+                    <h3 data-testid={`name${order.id}`}>{order.product_name}</h3>
                     <div className='remove-container'>
                       <div className='empty-bg'></div>
                       <button className='remove' data-testid={`remove${order.id}`} onClick={() => {
@@ -66,7 +72,7 @@ const Cart = ({ currentUser, cart, userTest, cartTest, productsTest, products, l
                     <div className='overlay'></div>
                     <p className='price' data-testid={`price${order.id}`}>{order.product_price}$</p>
                     <div className='order-img-div'>
-                      <img src={products[order.product_id * 1 - 1].URL} alt='URL' width='250' height='250' />
+                      <img src={order.product_URL} alt='URL' width='250' height='250' />
                     </div>
                   </div>
                 </div>
