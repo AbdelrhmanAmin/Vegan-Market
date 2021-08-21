@@ -1,5 +1,6 @@
 import decode from 'jwt-decode';
-const API = 'https://stormy-journey-83565.herokuapp.com/'
+const API = 'http://127.0.0.1:4000/'
+// const API = 'https://stormy-journey-83565.herokuapp.com/'
 
 export const logIn = (user) => ({
   type: 'LOGIN',
@@ -100,6 +101,7 @@ export const fetchUser = (email, password) => (dispatch) => {
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
   }).then((res) => res.json())
     .then((response) => {
+      console.log(response)
       if (response.message) {
         dispatch(error(response.message))
       }

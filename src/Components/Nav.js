@@ -13,13 +13,14 @@ import banana from '../assets/logo-banana.png'
 import brocoli from '../assets/logo-brocoli.png'
 import grape from '../assets/logo-grape.png'
 import tomato from '../assets/logo-tomato.png'
-import placeholder from '../assets/placeholder.jpg'
 import DelayLink from './DelayLink'
 import { gsap } from "gsap";
+import { Image, Transformation, CloudinaryContext } from 'cloudinary-react';
 
 const Nav = ({ user, userTest }) => {
   const dispatch = useDispatch()
   const [username, setUsername] = useState(false)
+  const [imgID, setImgID] = useState(null)
   let logos = [logo, banana, apple, grape, brocoli, tomato]
   let i = 0;
   const navbarRef = useRef(null)
@@ -27,6 +28,11 @@ const Nav = ({ user, userTest }) => {
   useEffect(() => {
     if (!localStorage.getItem('token')) {
       dispatch(logIn(userTest))
+    }
+    if (user && user.image !== null) {
+      setImgID(`Vegan-Market/${user.image.match(/[A-Za-z0-9]{20,}(?=(\.jpg|.png|.gif))/gi)[0]}.png`)
+    } else {
+      setImgID('Vegan-Market/placeholder_bzklm5.png')
     }
     gsap.from(navbarRef.current, { duration: 1, y: -500, ease: "power4.out" })
     gsap.from(iconsRef.current, { duration: 1.2, y: -500, ease: "expo.easeOut" })
@@ -57,7 +63,13 @@ const Nav = ({ user, userTest }) => {
 
         <DelayLink className="flex-right-header my-3" delay={500} to='/Cart' onDelayStart={() => dispatch(loadingState())}>
           <div className="main-username-div" >
-            <img src={placeholder} alt="icon" className="user-icon" data-testid='user-img' />
+            {/* <img src={placeholder} alt="icon" className="user-icon" data-testid='user-img' /> */}
+            <CloudinaryContext cloudName='abdoamin' >
+              <Image publicId={imgID} className='user-icon'>
+                <Transformation height="25" width="25" crop="fill" />
+                <Transformation radius="max" />
+              </Image>
+            </CloudinaryContext>
             <strong className="main-username" data-testid='username'>{username ? username : user.name}</strong>
           </div>
         </DelayLink>

@@ -67,7 +67,7 @@ const Signup = ({ error }) => {
       container.appendChild(gif)
       setTimeout(() => {
         history.push('/');
-      }, 3000);
+      }, 7000);
     }
   }
   return (

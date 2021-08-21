@@ -8,6 +8,7 @@ import { Image, Transformation, CloudinaryContext } from 'cloudinary-react';
 
 const Cart = ({ currentUser, cart, userTest, cartTest, productsTest, products, loading, loadingTest }) => {
   const [total, setTotal] = useState(0)
+  const [imgID, setImgID] = useState(null)
   const dispatch = useDispatch()
   if (!loadingTest) { loading = loadingTest }
   if (cartTest) { cart = cartTest }
@@ -16,6 +17,11 @@ const Cart = ({ currentUser, cart, userTest, cartTest, productsTest, products, l
     if (!userTest) {
       dispatch(fetchOrders(currentUser.id))
       dispatch(fetchProducts())
+      if (currentUser && currentUser.image !== null) {
+        setImgID(`Vegan-Market/${currentUser.image.match(/[A-Za-z0-9]{20,}(?=(\.jpg|.png|.gif))/gi)[0]}`)
+      } else {
+        setImgID('Vegan-Market/placeholder_bzklm5')
+      }
     }
     setTotal(cart.reduce((sum, p) => { return sum + p.product_price }, 0))
     if (!loading) {
@@ -42,8 +48,8 @@ const Cart = ({ currentUser, cart, userTest, cartTest, productsTest, products, l
     <div>
       <Nav userTest={userTest} />
       <CloudinaryContext cloudName='abdoamin' >
-        <Image publicId="Vegan-Market/f2qd4n8kbtwfcx28x23g3quhtjtu" >
-          <Transformation height="200" width="200" crop="crop" gravity="face" crop="thumb" />
+        <Image publicId={imgID} >
+          <Transformation height="200" width="200" gravity="face" crop="thumb" />
         </Image>
       </CloudinaryContext >
       {loading ? <img src='https://cdn.dribbble.com/users/451713/screenshots/3853529/_____.gif' className='gif-loading' alt='gif-loading' /> :

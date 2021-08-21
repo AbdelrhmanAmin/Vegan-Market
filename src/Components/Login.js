@@ -48,7 +48,7 @@ const Login = ({ error }) => {
       container.appendChild(gif)
       setTimeout(() => {
         history.push('/');
-      }, 2000);
+      }, 5000);
     }
   }
   return (
