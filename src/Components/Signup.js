@@ -4,7 +4,7 @@ import { useHistory, Link } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import './signup.css'
 
-const Signup = ({ error }) => {
+const Signup = ({ error, user_loading }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState(0);
@@ -65,9 +65,9 @@ const Signup = ({ error }) => {
       gif.src = 'https://cdn.dribbble.com/users/451713/screenshots/3853529/_____.gif'
       container.style.cssText = 'display: flex; justify-content: center'
       container.appendChild(gif)
-      setTimeout(() => {
-        history.push('/');
-      }, 7000);
+      if (!user_loading) {
+        history.push('/')
+      }
     }
   }
   return (
@@ -117,7 +117,8 @@ const Signup = ({ error }) => {
   )
 }
 const mapStateToProps = (state) => ({
-  error: state.errorReducer
+  error: state.errorReducer,
+  user_loading: state.userLoadingReducer
 });
 
 export default connect(mapStateToProps, null)(Signup)

@@ -2,6 +2,7 @@ import decode from 'jwt-decode';
 const API = 'http://127.0.0.1:4000/'
 // const API = 'https://stormy-journey-83565.herokuapp.com/'
 
+
 export const logIn = (user) => ({
   type: 'LOGIN',
   user,
@@ -13,7 +14,7 @@ export const logOut = () => ({
 
 export const error = (msg) => ({
   type: 'ERROR',
-  msg
+  msg,
 })
 
 export const cartSuccess = (orders) => ({
@@ -21,14 +22,16 @@ export const cartSuccess = (orders) => ({
   orders
 })
 
-export const productSuccess = (products, loading) => ({
+export const productSuccess = (products) => ({
   type: 'PRODUCTS_SUCCESS',
   products,
-  loading,
 })
 
 export const loadingState = () => ({
-  type: 'SET_LOADING',
+  type: 'SET_PRODUCT_LOADING',
+})
+export const userLoadingState = () => ({
+  type: 'SET_USER_LOADING',
 })
 
 export const createOrder = (productId, productName, productPrice, userId) => {
@@ -120,4 +123,19 @@ export const fetchUser = (email, password) => (dispatch) => {
       }
     })
     .catch((err) => { throw Error(`Error: ${err}`); });
+}
+
+export const uploadImg = (file, id) => {
+  fetch(`https://api.cloudinary.com/v1_1/abdoamin/upload`, {
+    method: "POST",
+    body: file
+  }).then(res => res.json())
+    .then(image => patchImg(image, id))
+}
+export const patchImg = (image, id) => {
+  fetch(`${API}users/${id}`, {
+    method: 'PATCH',
+    body: JSON.stringify({ image }),
+    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+  }).then((res) => console.log(res))
 }

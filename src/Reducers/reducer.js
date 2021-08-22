@@ -4,7 +4,9 @@ const user = ''
 const cart = []
 const products = []
 const err_msg = ""
-const loading = true
+const loading_products = true // change this one later.
+const loading_user = false
+
 
 function errorReducer(state = err_msg, action) {
   switch (action.type) {
@@ -36,16 +38,30 @@ function cartReducer(state = cart, action) {
 function productReducer(state = products, action) {
   switch (action.type) {
     case 'PRODUCTS_SUCCESS':
-      return action.products;
+      return false;
     default:
       return state;
   }
 }
-function loadingReducer(state = loading, action) {
+
+function userLoadingReducer(state = loading_user, action) {
+  switch (action.type) {
+    case 'ERROR':
+      return false
+    case 'LOGIN':
+      return false
+    case 'SET_USER_LOADING':
+      return true;
+    default:
+      return state;
+  }
+}
+
+function productsLoadingReducer(state = loading_products, action) {
   switch (action.type) {
     case 'PRODUCTS_SUCCESS':
-      return action.loading;
-    case 'SET_LOADING':
+      return false;
+    case 'SET_PRODUCT_LOADING':
       return true;
     default:
       return state;
@@ -54,7 +70,7 @@ function loadingReducer(state = loading, action) {
 
 
 const reducers = {
-  userReducer, cartReducer, productReducer, errorReducer, loadingReducer
+  userReducer, cartReducer, productReducer, errorReducer, productsLoadingReducer, userLoadingReducer
 };
 
 const appReducer = combineReducers(reducers);
