@@ -1,6 +1,6 @@
 import decode from 'jwt-decode';
-const API = 'http://127.0.0.1:4000/'
-// const API = 'https://stormy-journey-83565.herokuapp.com/'
+// const API = 'http://127.0.0.1:4000/'
+const API = 'https://stormy-journey-83565.herokuapp.com/'
 
 
 export const logIn = (user) => ({
@@ -78,6 +78,11 @@ export const createUser = (formData) => (dispatch) => {
   })
     .then((response) => {
       console.log(response)
+      if (response.status === 500 || response.ok === false) {
+        dispatch(error('Server is rejecting the data either the server is down or the data is taken/invalid.'))
+      }
+      response.json()
+    }).then(response => {
       if (response.message) {
         dispatch(error(response.message))
       }
@@ -123,19 +128,4 @@ export const fetchUser = (email, password) => (dispatch) => {
       }
     })
     .catch((err) => { throw Error(`Error: ${err}`); });
-}
-
-export const uploadImg = (file, id) => {
-  fetch(`https://api.cloudinary.com/v1_1/abdoamin/upload`, {
-    method: "POST",
-    body: file
-  }).then(res => res.json())
-    .then(image => patchImg(image, id))
-}
-export const patchImg = (image, id) => {
-  fetch(`${API}users/${id}`, {
-    method: 'PATCH',
-    body: JSON.stringify({ image }),
-    headers: { 'Content-type': 'application/json; charset=UTF-8' },
-  }).then((res) => console.log(res))
 }

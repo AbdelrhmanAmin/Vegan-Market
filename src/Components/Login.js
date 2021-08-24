@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchUser, userLoadingState, error as error_fn } from '../Actions'
+import { fetchUser, userLoadingState } from '../Actions'
 import { useHistory, Link } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
@@ -12,15 +12,16 @@ const Login = ({ error = '', user_loading, currentUser }) => {
   const dispatch = useDispatch();
   let token = localStorage.getItem('token');
   useEffect(() => {
-    // if loading is false and error is empty then redirect to homepage
     if (token) {
       let temp = decode(token)
       dispatch(logIn(temp))
     }
+  }, [token])
+  useEffect(() => {
     if (currentUser.id) {
       history.push('/')
     }
-  })
+  }, [currentUser.id])
   const handleChange = (e) => {
     let target = e.target.name
     let val = e.target.value

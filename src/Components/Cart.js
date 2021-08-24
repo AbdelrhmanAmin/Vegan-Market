@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
-import { fetchOrders, fetchProducts, removeOrder, uploadImg, patchImg } from '../Actions'
+import { fetchOrders, fetchProducts, removeOrder } from '../Actions'
 import './cart.css';
 import Nav from './Nav';
 import { gsap } from "gsap";
@@ -13,14 +13,6 @@ const Cart = ({ currentUser, cart, userTest, cartTest, productsTest, products, l
   if (!loadingTest) { loading = loadingTest }
   if (cartTest) { cart = cartTest }
   if (productsTest) { products = productsTest }
-  const handleUpload = (file) => {
-    const fd = new FormData()
-    fd.append("upload_preset", 'opr33wld')
-    fd.append("tags", "browser_upload");
-    fd.append("folder", "Vegan-Market");
-    fd.append("file", file[0]);
-    uploadImg(fd, currentUser.id)
-  }
   useEffect(() => {
     if (!userTest) {
       dispatch(fetchOrders(currentUser.id))
@@ -60,7 +52,6 @@ const Cart = ({ currentUser, cart, userTest, cartTest, productsTest, products, l
           <Transformation height="200" width="200" gravity="face" crop="thumb" />
         </Image>
       </CloudinaryContext >
-      <input type="file" name="img" accept="image/*" onChange={(e) => handleUpload(e.target.files)} />
       {loading ? <img src='https://cdn.dribbble.com/users/451713/screenshots/3853529/_____.gif' className='gif-loading' alt='gif-loading' /> :
         <div className='orders-flex' data-testid='orders-container'>
           <div className='total' data-testid='total'>

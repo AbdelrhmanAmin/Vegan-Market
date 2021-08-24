@@ -1,16 +1,29 @@
-import React, { useState } from 'react';
-import { createUser } from '../Actions'
+import React, { useState, useEffect } from 'react';
+import { createUser, userLoadingState, logIn } from '../Actions'
 import { useHistory, Link } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import './signup.css'
+import decode from 'jwt-decode';
 
-const Signup = ({ error, user_loading }) => {
+const Signup = ({ error, user_loading, currentUser }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState(0);
   const [image, setImage] = useState(null);
   const history = useHistory();
   const dispatch = useDispatch();
+  let token = localStorage.getItem('token');
+  useEffect(() => {
+    if (token) {
+      let temp = decode(token)
+      dispatch(logIn(temp))
+    }
+  }, [token])
+  useEffect(() => {
+    if (currentUser.id) {
+      history.push('/')
+    }
+  }, [currentUser.id])
   const handleChange = (e) => {
     let target = e.target.name
     let val = e.target.value
@@ -53,72 +66,74 @@ const Signup = ({ error, user_loading }) => {
       target.innerHTML = "Password must be longer than 6 charcaters."
     }
     if (password.length > 5 && test.test(name.replace(' ', '')) && re.test(String(email).toLowerCase())) {
+      dispatch(userLoadingState(true))
       const form = new FormData()
       form.append('name', name)
       form.append('email', email)
       form.append('password', password)
       form.append('image', image)
       dispatch(createUser(form));
-      let container = document.querySelector('.sign-container')
-      container.innerHTML = ''
-      let gif = document.createElement('img')
-      gif.src = 'https://cdn.dribbble.com/users/451713/screenshots/3853529/_____.gif'
-      container.style.cssText = 'display: flex; justify-content: center'
-      container.appendChild(gif)
-      if (!user_loading) {
-        history.push('/')
-      }
     }
   }
   return (
-    <main className='sign-container'>
-      <section className='top'>
-        <div className="title">SIGN UP</div>
-        <span className='redirect'>Already have an account? <Link to='/Login'>Login</Link></span>
-      </section>
-      <section className="form-container">
-        <div className="login">
-          <strong className='errors'>{error}</strong>
-          <form action="#" method="post" className="form" onSubmit={e => handleSubmit(e)}>
-            <fieldset>
-              <label
-              >Email Address:<input onChange={e => handleChange(e)} type='email' name='email' required />
-              </label>
-              <span id='email-err'></span>
-            </fieldset>
-            <fieldset>
-              <label
-              >Name:<input onChange={e => handleChange(e)} type="text" name="name" required />
-              </label>
-              <span id='name-err'></span>
-            </fieldset>
-            <fieldset>
-              <label>
-                Password: <input onChange={e => handleChange(e)} type="password" name="password" required />
-              </label>
-              <span id='pw-err'></span>
-            </fieldset>
-            <fieldset>
-              <label>
-                Image: <input type="file" name="image"
-                  onChange={(e) => setImage(e.target.files[0])} />
-              </label>
-              <span id='pw-err'></span>
-            </fieldset>
-            <button type="submit">
-              <i className="fas fa-lock"></i>Create Account
+    <div>
+      {
+        user_loading ?
+          <div className='loading_user_gif' >
+            <img src='https://cdn.dribbble.com/users/451713/screenshots/3853529/_____.gif' alt='loading gif' />
+          </div>
+          :
+          <main className='sign-container'>
+            <section className='top'>
+              <div className="title">SIGN UP</div>
+              <span className='redirect'>Already have an account? <Link to='/Login'>Login</Link></span>
+            </section>
+            <section className="form-container">
+              <div className="login">
+                <strong className='errors'>{error}</strong>
+                <form action="#" method="post" className="form" onSubmit={e => handleSubmit(e)}>
+                  <fieldset>
+                    <label
+                    >Email Address:<input onChange={e => handleChange(e)} type='email' name='email' required />
+                    </label>
+                    <span id='email-err'></span>
+                  </fieldset>
+                  <fieldset>
+                    <label
+                    >Name:<input onChange={e => handleChange(e)} type="text" name="name" required />
+                    </label>
+                    <span id='name-err'></span>
+                  </fieldset>
+                  <fieldset>
+                    <label>
+                      Password: <input onChange={e => handleChange(e)} type="password" name="password" required />
+                    </label>
+                    <span id='pw-err'></span>
+                  </fieldset>
+                  <fieldset>
+                    <label>
+                      Image: <input type="file" name="image"
+                        onChange={(e) => setImage(e.target.files[0])} />
+                    </label>
+                    <span id='pw-err'></span>
+                  </fieldset>
+                  <button type="submit">
+                    <i className="fas fa-lock"></i>Create Account
             </button>
-          </form>
-        </div>
-        <div className="footer-form">
-        </div>
-      </section>
-    </main>
+                </form>
+              </div>
+              <div className="footer-form">
+              </div>
+            </section>
+          </main>
+      }
+    </div>
   )
 }
 const mapStateToProps = (state) => ({
   error: state.errorReducer,
-  user_loading: state.userLoadingReducer
+  user_loading: state.userLoadingReducer,
+  currentUser: state.userReducer,
 });
 
 export default connect(mapStateToProps, null)(Signup)

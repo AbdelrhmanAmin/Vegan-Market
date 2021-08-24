@@ -48,8 +48,6 @@ function userLoadingReducer(state = loading_user, action) {
   switch (action.type) {
     case 'ERROR':
       return false
-    case 'LOGIN':
-      return false
     case 'SET_USER_LOADING':
       return true;
     default:
