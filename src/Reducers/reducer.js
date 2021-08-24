@@ -38,7 +38,7 @@ function cartReducer(state = cart, action) {
 function productReducer(state = products, action) {
   switch (action.type) {
     case 'PRODUCTS_SUCCESS':
-      return false;
+      return action.products;
     default:
       return state;
   }

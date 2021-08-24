@@ -34,17 +34,18 @@ export const userLoadingState = () => ({
   type: 'SET_USER_LOADING',
 })
 
-export const createOrder = (productId, productName, productPrice, userId) => {
+export const createOrder = (productId, productName, productPrice, userId, productURL) => {
   fetch(`${API}orders`, {
     method: 'post',
-    body: JSON.stringify({ product_id: productId, product_name: productName, product_price: productPrice, user_id: userId }),
+    body: JSON.stringify({ product_id: productId, product_name: productName, product_price: productPrice, user_id: userId, product_URL: productURL }),
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
-  })
+  }).then(res => console.log(res))
 }
 
 export const fetchOrders = (userId) => (dispatch) => {
   fetch(`${API}orders`).then((res) => res.json())
     .then((orders) => {
+      console.log(orders)
       let ordered = []
       for (let order of orders) {
         if (order.user_id === userId) {

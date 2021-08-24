@@ -12,7 +12,7 @@ import {
 } from 'react-router-dom';
 import Nav from './Nav';
 
-const Home = ({ currentUser, userTest, productsTest, cart, products, loading, loadingTest = true }) => {
+const Home = ({ currentUser, userTest = false, productsTest = false, cart, products, loading, loadingTest = true }) => {
   const dispatch = useDispatch()
   const [visible, setVisible] = useState(false)
   const [productX, setProduct] = useState(0)
@@ -55,7 +55,7 @@ const Home = ({ currentUser, userTest, productsTest, cart, products, loading, lo
                     }
                     {
                       cart.find(x => x.product_id === product.id) === undefined ? (<button className='cart-off' data-testid={`add-btn${product.id}`} id={product.id} onClick={() => {
-                        createOrder(product.id, product.name, product.price, currentUser.id)
+                        createOrder(product.id, product.name, product.price, currentUser.id, product.URL)
                         gsap.to(document.getElementById(product.id), { duration: 1, ease: "power4.out", x: -2000 })
                         setTimeout(() => { document.getElementById(product.id).outerHTML = '<div></div>' }, 900)
                       }}>Add To<FaCartArrowDown color='inherit' fontSize='1.5rem' /></button>) : <div></div>
@@ -84,7 +84,7 @@ const mapStateToProps = (state) => ({
   currentUser: state.userReducer,
   cart: state.cartReducer,
   products: state.productReducer,
-  loading: state.loadingReducer
+  loading: state.productsLoadingReducer
 });
 
 export default connect(mapStateToProps, null)(Home)
