@@ -131,7 +131,7 @@ button {
   width: 300px;
   top: 0;
   left: 40%;
-  z-index: 5;
+  z-index: 101;
   border: 10px solid white;
   display: flex;
   flex-direction: column;
@@ -144,6 +144,7 @@ button {
 .product-img-div-pop-up {
   position: relative;
   height: 250px;
+  width: 100%;
 }
 
 .product-img-div-pop-up p {
@@ -184,7 +185,7 @@ button {
   left: 0;
   right: 0;
   background-color: rgb(0 0 0 / 70%);
-  z-index: 4;
+  z-index: 100;
 }
 #layer-loading {
   position: fixed;
@@ -208,7 +209,7 @@ button {
 }
 @media only screen and (max-width: 930px) {
   .pop-up {
-    left: 25%;
+    left: 30%;
   }
   .product-grid {
     grid-template-columns: 1fr 1fr;
@@ -236,6 +237,9 @@ button {
   }
 }
 @media only screen and (max-width: 680px) {
+  .pop-up {
+    left: 16%;
+  }
   .not-mobile-btn,
   .empty-div {
     display: none;

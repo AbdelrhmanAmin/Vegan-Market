@@ -130,7 +130,7 @@
   .nav-flex {
     position: fixed;
     top: 0;
-    z-index: 12000;
+    z-index: 99;
     align-items: center;
     justify-content: space-between;
     background-color: black;
