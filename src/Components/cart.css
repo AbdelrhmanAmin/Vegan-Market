@@ -143,13 +143,28 @@
   z-index: 1;
 }
 
-@media only screen and (max-width: 1028px) {
+@media only screen and (max-width: 1108px) {
   .orders-flex {
     grid-template-columns: 1fr 1fr;
   }
+  .total {
+    position: absolute;
+    color: #000000;
+    top: 0%;
+    width: 105px;
+    left: 200px;
+    background: white;
+    border: 5px solid #ff9500;
+    padding: 8px;
+    z-index: 10;
+    display: block;
+  }
 }
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 680px) {
   .orders-flex {
     grid-template-columns: 1fr;
+  }
+  .cart-container {
+    margin-top: 100px;
   }
 }
