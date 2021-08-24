@@ -61,6 +61,10 @@ nav div a {
   max-width: 380px;
   margin: 25px auto;
 }
+.loading_user_gif {
+  display: flex;
+  justify-content: center;
+}
 
 .links-container {
   display: flex;

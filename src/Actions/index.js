@@ -1,5 +1,7 @@
 import decode from 'jwt-decode';
+// const API = 'http://127.0.0.1:4000/'
 const API = 'https://stormy-journey-83565.herokuapp.com/'
+
 
 export const logIn = (user) => ({
   type: 'LOGIN',
@@ -12,7 +14,7 @@ export const logOut = () => ({
 
 export const error = (msg) => ({
   type: 'ERROR',
-  msg
+  msg,
 })
 
 export const cartSuccess = (orders) => ({
@@ -20,27 +22,30 @@ export const cartSuccess = (orders) => ({
   orders
 })
 
-export const productSuccess = (products, loading) => ({
+export const productSuccess = (products) => ({
   type: 'PRODUCTS_SUCCESS',
   products,
-  loading,
 })
 
 export const loadingState = () => ({
-  type: 'SET_LOADING',
+  type: 'SET_PRODUCT_LOADING',
+})
+export const userLoadingState = () => ({
+  type: 'SET_USER_LOADING',
 })
 
-export const createOrder = (productId, productName, productPrice, userId) => {
+export const createOrder = (productId, productName, productPrice, userId, productURL) => {
   fetch(`${API}orders`, {
     method: 'post',
-    body: JSON.stringify({ product_id: productId, product_name: productName, product_price: productPrice, user_id: userId }),
+    body: JSON.stringify({ product_id: productId, product_name: productName, product_price: productPrice, user_id: userId, product_URL: productURL }),
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
-  })
+  }).then(res => console.log(res))
 }
 
 export const fetchOrders = (userId) => (dispatch) => {
   fetch(`${API}orders`).then((res) => res.json())
     .then((orders) => {
+      console.log(orders)
       let ordered = []
       for (let order of orders) {
         if (order.user_id === userId) {
@@ -62,7 +67,7 @@ export const removeOrder = (orderId) => {
 export const fetchProducts = () => (dispatch) => {
   fetch(`${API}products`).then((res) => res.json())
     .then((products) => {
-      dispatch(productSuccess(products, false))
+      dispatch(productSuccess(products))
     })
 }
 
@@ -74,6 +79,11 @@ export const createUser = (formData) => (dispatch) => {
   })
     .then((response) => {
       console.log(response)
+      if (response.status === 500 || response.ok === false) {
+        dispatch(error('Server is rejecting the data either the server is down or the data is taken/invalid.'))
+      }
+      return response.json()
+    }).then(response => {
       if (response.message) {
         dispatch(error(response.message))
       }
@@ -100,6 +110,7 @@ export const fetchUser = (email, password) => (dispatch) => {
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
   }).then((res) => res.json())
     .then((response) => {
+      console.log(response)
       if (response.message) {
         dispatch(error(response.message))
       }

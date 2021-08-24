@@ -75,6 +75,7 @@ button {
 .img-container {
   z-index: 1;
   position: absolute;
+  width: 100%;
 }
 .product-img-div img {
   width: 100%;
@@ -128,7 +129,7 @@ button {
   width: 300px;
   top: 0;
   left: 40%;
-  z-index: 5;
+  z-index: 101;
   border: 10px solid white;
   display: flex;
   flex-direction: column;
@@ -141,6 +142,7 @@ button {
 .product-img-div-pop-up {
   position: relative;
   height: 250px;
+  width: 100%;
 }
 
 .product-img-div-pop-up p {
@@ -181,7 +183,7 @@ button {
   left: 0;
   right: 0;
   background-color: rgb(0 0 0 / 70%);
-  z-index: 4;
+  z-index: 100;
 }
 #layer-loading {
   position: fixed;
@@ -195,7 +197,9 @@ button {
   z-index: 4;
   margin: auto;
 }
-
+.mobile-btn {
+  display: none;
+}
 @media only screen and (max-width: 1200px) {
   .product-grid {
     grid-template-columns: 1fr 1fr 1fr;
@@ -203,7 +207,11 @@ button {
 }
 @media only screen and (max-width: 930px) {
   .pop-up {
-    left: 25%;
+    left: 30%;
+  }
+  .product-desc-div {
+    height: 65%;
+    margin: auto 0;
   }
   .product-grid {
     grid-template-columns: 1fr 1fr;
@@ -231,24 +239,56 @@ button {
   }
 }
 @media only screen and (max-width: 680px) {
-  .product-grid {
+  .gif-loading {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    margin: auto;
+    width: 100vw;
+    height: 100vh;
+  }
+  .pop-up {
+    left: 16%;
+  }
+  .not-mobile-btn,
+  .empty-div {
+    display: none;
+  }
+  .mobile-btn {
+    display: block;
+  }
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: 100px;
   }
   .product-box {
     margin: 0;
+    border: 0;
+    box-shadow: none;
+    display: flex;
+    height: 95%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
   .product-img-div {
-    width: 100%;
-    left: 0;
+    position: relative;
+    top: 0;
+  }
+  .product-img-div img {
+    height: 100%;
   }
   .product-container {
-    width: 280px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .img-container {
+    height: 100%;
   }
   .product-desc-div {
     padding-bottom: 0;
+    justify-content: flex-start;
+    box-shadow: none;
   }
   .product-grid * {
     font-size: 16px !important;

@@ -100,7 +100,7 @@
   color: white !important;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 680px) {
   .main-username {
     display: none;
   }
@@ -118,5 +118,39 @@
     left: 0;
     top: 2px;
     width: 25px;
+  }
+  .logo-div {
+    display: none;
+  }
+  .logo {
+    animation: none;
+    width: 60px;
+    margin-top: 0;
+  }
+  .nav-flex {
+    position: fixed;
+    top: 0;
+    z-index: 99;
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+    width: 100%;
+  }
+  .nav-flex-right {
+    width: 200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+  }
+  .user-icon {
+    width: 35px;
+  }
+  .flex-right-header {
+    width: 85%;
+    height: 45px;
+  }
+  .nav-flex-right svg {
+    margin-top: 0;
+    display: flex;
   }
 }
