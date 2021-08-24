@@ -22,8 +22,6 @@ button {
 .gif-loading {
   display: flex;
   margin: auto;
-  width: 100vw;
-  height: 100vh;
 }
 .overlay-2 {
   position: absolute;
@@ -241,6 +239,12 @@ button {
   }
 }
 @media only screen and (max-width: 680px) {
+  .gif-loading {
+    display: flex;
+    margin: auto;
+    width: 100vw;
+    height: 100vh;
+  }
   .pop-up {
     left: 16%;
   }
