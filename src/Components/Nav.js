@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { loadingState, logOut, logIn } from '../Actions';
 import { useDispatch, connect } from 'react-redux';
-import { GoSignOut } from "react-icons/go";
+// import { GoSignOut } from "react-icons/go";
+import { BiExit } from "react-icons/bi";
 import { AiFillShop } from "react-icons/ai";
 import './nav.css';
 import {
@@ -34,8 +35,10 @@ const Nav = ({ user, userTest }) => {
     } else {
       setImgID('Vegan-Market/placeholder_bzklm5.png')
     }
-    gsap.from(navbarRef.current, { duration: 1, y: -500, ease: "power4.out" })
-    gsap.from(iconsRef.current, { duration: 1.2, y: -500, ease: "expo.easeOut" })
+    if (window.innerWidth > 600) {
+      gsap.from(navbarRef.current, { duration: 1, y: -500, ease: "power4.out" })
+      gsap.from(iconsRef.current, { duration: 1.2, y: -500, ease: "expo.easeOut" })
+    }
     if (user !== '') {
       let arr = user.name.split(' ')
       if (arr.length > 1) { setUsername(arr[arr.length - 1]) }
@@ -55,15 +58,16 @@ const Nav = ({ user, userTest }) => {
       <div>
         <Link to='/' className='logo-container' data-testid='logo'>
           <img src={logo} alt='logo' className='logo l-1' id='logo' />
-          <h2>Market</h2>
-          <h3>Vegan</h3>
+          <div className='logo-div'>
+            <h2>Market</h2>
+            <h3>Vegan</h3>
+          </div>
         </Link>
       </div>
       <div className='nav-flex-right' ref={iconsRef}>
 
         <DelayLink className="flex-right-header my-3" delay={500} to='/Cart' onDelayStart={() => dispatch(loadingState())}>
           <div className="main-username-div" >
-            {/* <img src={placeholder} alt="icon" className="user-icon" data-testid='user-img' /> */}
             <CloudinaryContext cloudName='abdoamin' >
               <Image publicId={imgID} className='user-icon'>
                 <Transformation height="25" width="25" crop="fill" />
@@ -78,7 +82,7 @@ const Nav = ({ user, userTest }) => {
         </DelayLink>
         <Link to='/Login' className='sign-out' onClick={() => {
           dispatch(logOut())
-        }}><GoSignOut color='white' className='out-icon' fontSize='2.5rem' data-testid='logout' /></Link>
+        }}><BiExit color='white' className='out-icon' fontSize='2.5rem' data-testid='logout' /></Link>
       </div>
     </div>
   )
