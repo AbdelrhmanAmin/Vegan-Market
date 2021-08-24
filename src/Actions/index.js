@@ -82,7 +82,7 @@ export const createUser = (formData) => (dispatch) => {
       if (response.status === 500 || response.ok === false) {
         dispatch(error('Server is rejecting the data either the server is down or the data is taken/invalid.'))
       }
-      response.json()
+      return response.json()
     }).then(response => {
       if (response.message) {
         dispatch(error(response.message))
