@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { createUser, userLoadingState, logIn } from '../Actions'
 import { useHistory, Link } from 'react-router-dom';

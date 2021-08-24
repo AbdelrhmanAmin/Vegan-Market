@@ -67,7 +67,7 @@ export const removeOrder = (orderId) => {
 export const fetchProducts = () => (dispatch) => {
   fetch(`${API}products`).then((res) => res.json())
     .then((products) => {
-      dispatch(productSuccess(products, false))
+      dispatch(productSuccess(products))
     })
 }
 
