@@ -47,19 +47,20 @@ const Cart = ({ currentUser, cart, userTest = false, cartTest, productsTest = fa
   return (
     <div>
       <Nav userTest={userTest} />
-      <main>
-        <section>
-          <CloudinaryContext cloudName='abdoamin' >
-            <Image publicId={imgID} >
-              <Transformation height="200" width="200" gravity="face" crop="thumb" />
-            </Image>
-          </CloudinaryContext >
-        </section>
-        {loading ? <img src='https://cdn.dribbble.com/users/451713/screenshots/3853529/_____.gif' className='gif-loading' alt='gif-loading' /> :
+      {loading ? <img src='https://cdn.dribbble.com/users/451713/screenshots/3853529/_____.gif' className='gif-loading' alt='gif-loading' /> :
+        <main className='cart-container'>
+          <div className='total' data-testid='total'>
+            <strong >Total:</strong> {total}$
+            </div>
+          <section className='user-profile-section'>
+            <CloudinaryContext cloudName='abdoamin' >
+              <Image publicId={imgID} >
+                <Transformation height="200" width="200" gravity="face" crop="thumb" />
+              </Image>
+            </CloudinaryContext >
+            <h2>{currentUser.name}</h2>
+          </section>
           <section className='orders-flex' data-testid='orders-container'>
-            <div className='total' data-testid='total'>
-              <strong >Total:</strong> {total}$
-          </div>
             {
               cart.map((order) => {
                 return (
@@ -89,8 +90,8 @@ const Cart = ({ currentUser, cart, userTest = false, cartTest, productsTest = fa
               })
             }
           </section>
-        }
-      </main>
+        </main>
+      }
     </div>
   )
 }
