@@ -7,7 +7,7 @@
 }
 .user-profile-section {
   background-color: #ff9500;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;

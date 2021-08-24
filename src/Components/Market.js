@@ -45,7 +45,7 @@ const Home = ({ currentUser, userTest = false, productsTest = false, cart, produ
                   <div className='product-desc-div'>
                     <h2 data-testid='name'>{product.name}</h2>
                     {
-                      product.description.length > 160 ? <span data-testid='desc1'>{product.description.substring(0, 80)}...<Link to='#' data-testid='read-more' onClick={() => {
+                      product.description.length > 100 ? <span data-testid='desc1'>{product.description.substring(0, 60)}...<Link to='#' data-testid='read-more' onClick={() => {
                         setVisible(true)
                         setProduct(product)
                       }}><strong style={{
@@ -54,11 +54,20 @@ const Home = ({ currentUser, userTest = false, productsTest = false, cart, produ
                       }}>READ MORE </strong></Link></span> : <span data-testid='desc2'>{product.description}</span>
                     }
                     {
-                      cart.find(x => x.product_id === product.id) === undefined ? (<button className='cart-off' data-testid={`add-btn${product.id}`} id={product.id} onClick={() => {
+                      cart.find(x => x.product_id === product.id) === undefined ? (<button className='cart-off not-mobile-btn' data-testid={`add-btn${product.id}`} id={product.id} onClick={() => {
                         createOrder(product.id, product.name, product.price, currentUser.id, product.URL)
                         gsap.to(document.getElementById(product.id), { duration: 1, ease: "power4.out", x: -2000 })
-                        setTimeout(() => { document.getElementById(product.id).outerHTML = '<div></div>' }, 900)
-                      }}>Add To<FaCartArrowDown color='inherit' fontSize='1.5rem' /></button>) : <div></div>
+                        setTimeout(() => { document.getElementById(product.id).outerHTML = '<div></div>' }, 500)
+                      }}>Add To<FaCartArrowDown color='inherit' fontSize='1.5rem' /></button>) : <div className='empty-div'></div>
+                    }
+                  </div>
+                  <div className='mobile-btn'>
+                    {
+                      cart.find(x => x.product_id === product.id) === undefined ? (<button className='cart-off' data-testid={`add-btn${product.id}`} id={product.id} onClick={() => {
+                        createOrder(product.id, product.name, product.price, currentUser.id, product.URL)
+                        document.getElementById(product.id).remove()
+                        document.getElementById(product.id).outerHTML = '<div></div>'
+                      }}><FaCartArrowDown color='inherit' fontSize='2.5rem' /></button>) : <div></div>
                     }
                   </div>
                 </div>
