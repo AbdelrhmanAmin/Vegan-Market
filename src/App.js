@@ -4,12 +4,12 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import Signup from './Signup';
-import Login from './Login';
-import Home from './Home';
-import Market from './Market';
-import Cart from './Cart';
-import ProtectedRoute from './ProtectedRoute';
+import Signup from './Components/Signup';
+import Login from './Components/Login';
+import Home from './Components/Home';
+import Market from './Components/Market';
+import Cart from './Components/Cart';
+import ProtectedRoute from './Components/ProtectedRoute';
 
 
 
