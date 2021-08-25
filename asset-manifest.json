@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Vegan-Market/static/css/main.5a8b63ed.chunk.css",
-    "main.js": "/Vegan-Market/static/js/main.945ba5b5.chunk.js",
-    "main.js.map": "/Vegan-Market/static/js/main.945ba5b5.chunk.js.map",
+    "main.js": "/Vegan-Market/static/js/main.1e10cdf6.chunk.js",
+    "main.js.map": "/Vegan-Market/static/js/main.1e10cdf6.chunk.js.map",
     "runtime-main.js": "/Vegan-Market/static/js/runtime-main.03fd0089.js",
     "runtime-main.js.map": "/Vegan-Market/static/js/runtime-main.03fd0089.js.map",
-    "static/js/2.a3c862b6.chunk.js": "/Vegan-Market/static/js/2.a3c862b6.chunk.js",
-    "static/js/2.a3c862b6.chunk.js.map": "/Vegan-Market/static/js/2.a3c862b6.chunk.js.map",
+    "static/js/2.d945346f.chunk.js": "/Vegan-Market/static/js/2.d945346f.chunk.js",
+    "static/js/2.d945346f.chunk.js.map": "/Vegan-Market/static/js/2.d945346f.chunk.js.map",
     "index.html": "/Vegan-Market/index.html",
     "static/css/main.5a8b63ed.chunk.css.map": "/Vegan-Market/static/css/main.5a8b63ed.chunk.css.map",
-    "static/js/2.a3c862b6.chunk.js.LICENSE.txt": "/Vegan-Market/static/js/2.a3c862b6.chunk.js.LICENSE.txt",
+    "static/js/2.d945346f.chunk.js.LICENSE.txt": "/Vegan-Market/static/js/2.d945346f.chunk.js.LICENSE.txt",
     "static/media/arrow.a870744f.png": "/Vegan-Market/static/media/arrow.a870744f.png",
     "static/media/logo-apple.bb2234fa.png": "/Vegan-Market/static/media/logo-apple.bb2234fa.png",
     "static/media/logo-banana.2133f4fd.png": "/Vegan-Market/static/media/logo-banana.2133f4fd.png",
@@ -20,8 +20,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.03fd0089.js",
-    "static/js/2.a3c862b6.chunk.js",
+    "static/js/2.d945346f.chunk.js",
     "static/css/main.5a8b63ed.chunk.css",
-    "static/js/main.945ba5b5.chunk.js"
+    "static/js/main.1e10cdf6.chunk.js"
   ]
 }
