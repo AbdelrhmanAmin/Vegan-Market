@@ -25,13 +25,14 @@
 - React-Redux
 - Thunk
 
-## Video walkthrough 
+## Video walkthrough
 
-[![Watch the video](./homepage.png)](https://www.loom.com/share/6fecce4cb0fd4b36bd7dee9b5f84c324)
+[![Watch the video](./homepage.png)](https://www.loom.com/share/e1457363dfe0490ba3796297f7f1900a)
 
 ## LIVE DEMO
 
 **CURRENTLY NOT AVAILABLE**
+
 ### Setup
 
 1- Clone the repository

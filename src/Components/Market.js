@@ -35,7 +35,6 @@ const Home = ({ currentUser, userTest = false, productsTest = false, cart, produ
             products.map((product) => (
               <div className='product-container' key={product.id} >
                 <div className='box-img product-img-div'>
-                  <div className='overlay-2'></div>
                   <p data-testid='price'>{product.price}.00$</p>
                   <div className='img-container'>
                     <img src={product.URL} alt='URL' data-testid='img' />
