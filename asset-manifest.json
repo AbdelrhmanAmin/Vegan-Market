@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/Vegan-Market/static/css/main.5a8b63ed.chunk.css",
+    "main.js": "/Vegan-Market/static/js/main.89266506.chunk.js",
+    "main.js.map": "/Vegan-Market/static/js/main.89266506.chunk.js.map",
+    "runtime-main.js": "/Vegan-Market/static/js/runtime-main.03fd0089.js",
+    "runtime-main.js.map": "/Vegan-Market/static/js/runtime-main.03fd0089.js.map",
+    "static/js/2.a3c862b6.chunk.js": "/Vegan-Market/static/js/2.a3c862b6.chunk.js",
+    "static/js/2.a3c862b6.chunk.js.map": "/Vegan-Market/static/js/2.a3c862b6.chunk.js.map",
+    "index.html": "/Vegan-Market/index.html",
+    "static/css/main.5a8b63ed.chunk.css.map": "/Vegan-Market/static/css/main.5a8b63ed.chunk.css.map",
+    "static/js/2.a3c862b6.chunk.js.LICENSE.txt": "/Vegan-Market/static/js/2.a3c862b6.chunk.js.LICENSE.txt",
+    "static/media/arrow.a870744f.png": "/Vegan-Market/static/media/arrow.a870744f.png",
+    "static/media/logo-apple.bb2234fa.png": "/Vegan-Market/static/media/logo-apple.bb2234fa.png",
+    "static/media/logo-banana.2133f4fd.png": "/Vegan-Market/static/media/logo-banana.2133f4fd.png",
+    "static/media/logo-brocoli.9b8c0b42.png": "/Vegan-Market/static/media/logo-brocoli.9b8c0b42.png",
+    "static/media/logo-grape.e2864364.png": "/Vegan-Market/static/media/logo-grape.e2864364.png",
+    "static/media/logo-tomato.f03d6294.png": "/Vegan-Market/static/media/logo-tomato.f03d6294.png",
+    "static/media/main.ee1e68f1.png": "/Vegan-Market/static/media/main.ee1e68f1.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.03fd0089.js",
+    "static/js/2.a3c862b6.chunk.js",
+    "static/css/main.5a8b63ed.chunk.css",
+    "static/js/main.89266506.chunk.js"
+  ]
+}
