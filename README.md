@@ -25,10 +25,13 @@
 - React-Redux
 - Thunk
 
+## Video walkthrough
+
+[![Watch the video](./homepage.png)](https://www.loom.com/share/e1457363dfe0490ba3796297f7f1900a)
+
 ## LIVE DEMO
 
-NOTE: THIS IS A BETA DEMO, ERRORS AND BUGS ARE EXPECTED. <br>
-[Click here](https://musing-wilson-2ffd7e.netlify.app/)
+**CURRENTLY NOT AVAILABLE**
 
 ### Setup
 
