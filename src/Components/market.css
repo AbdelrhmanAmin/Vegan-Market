@@ -23,19 +23,6 @@ button {
   display: flex;
   margin: auto;
 }
-.overlay-2 {
-  position: absolute;
-  width: 100%;
-  height: 140%;
-  top: -14%;
-  left: 0px;
-  transition: all 0.3s ease-in-out;
-  z-index: 1;
-}
-.product-img-div:hover > .overlay-2 {
-  height: 267%;
-  background-color: rgba(0, 0, 0, 0.2);
-}
 .product-container {
   position: relative;
   background-color: #ff9500;
