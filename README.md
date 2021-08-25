@@ -31,7 +31,7 @@
 
 ## LIVE DEMO
 
-**CURRENTLY NOT AVAILABLE**
+http://abdoamin.me/Vegan-Market/
 
 ### Setup
 
