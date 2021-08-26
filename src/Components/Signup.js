@@ -94,26 +94,24 @@ const Signup = ({ error, user_loading, currentUser }) => {
                 <strong className='errors'>{error}</strong>
                 <form action="#" method="post" className="form" onSubmit={e => handleSubmit(e)}>
                   <fieldset>
-                    <label
-                    >Email Address:<input onChange={e => handleChange(e)} type='email' name='email' required />
+                    <label><span className='red-star'>*</span>Email Address:<input onChange={e => handleChange(e)} type='email' name='email' required />
                     </label>
                     <span id='email-err'></span>
                   </fieldset>
                   <fieldset>
-                    <label
-                    >Name:<input onChange={e => handleChange(e)} type="text" name="name" required />
+                    <label><span className='red-star'>*</span>Name:<input onChange={e => handleChange(e)} type="text" name="name" required />
                     </label>
                     <span id='name-err'></span>
                   </fieldset>
                   <fieldset>
                     <label>
-                      Password: <input onChange={e => handleChange(e)} type="password" name="password" required />
+                      <span className='red-star'>*</span>Password: <input onChange={e => handleChange(e)} type="password" name="password" required />
                     </label>
                     <span id='pw-err'></span>
                   </fieldset>
                   <fieldset>
                     <label>
-                      Image: <input type="file" name="image"
+                      <span className='red-star'>*</span>Image: <input type="file" name="image"
                         onChange={(e) => setImage(e.target.files[0])} />
                     </label>
                     <span id='pw-err'></span>

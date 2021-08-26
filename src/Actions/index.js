@@ -72,7 +72,7 @@ export const fetchProducts = () => (dispatch) => {
 }
 
 export const createUser = (formData) => (dispatch) => {
-  console.log({ name: formData.get('name'), email: formData.get('email'), password: formData.get('password'), image: formData.get('image') })
+  var res = null;
   fetch(`${API}users`, {
     method: 'POST',
     body: formData,
@@ -80,27 +80,28 @@ export const createUser = (formData) => (dispatch) => {
     .then((response) => {
       console.log(response)
       if (response.status === 500 || response.ok === false) {
-        dispatch(error('Server is rejecting the data either the server is down or the data is taken/invalid.'))
+        dispatch(error("I would love to see your face...Please provide an image. 😀"))
       }
-      return response.json()
-    }).then(response => {
-      if (response.message) {
-        dispatch(error(response.message))
+      res = response.json()
+    }).catch((err) => { throw Error(`Error: ${err}`); });
+
+  if (res !== null) {
+    if (res.message) {
+      dispatch(error(res.message))
+    }
+    if (res.user) {
+      localStorage.setItem('token', res.user.token)
+      let data = decode(res.user.token);
+      let exp = data.exp * 1000
+      if (new Date(exp) <= new Date()) {
+        localStorage.removeItem('token')
+        data = null;
+        exp = null;
+        return
       }
-      if (response.user) {
-        localStorage.setItem('token', response.user.token)
-        let data = decode(response.user.token);
-        let exp = data.exp * 1000
-        if (new Date(exp) <= new Date()) {
-          localStorage.removeItem('token')
-          data = null;
-          exp = null;
-          return
-        }
-        dispatch(logIn(data))
-      }
-    })
-    .catch((err) => { throw Error(`Error: ${err}`); });
+      dispatch(logIn(data))
+    }
+  }
 }
 
 export const fetchUser = (email, password) => (dispatch) => {
