@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
-import { fetchOrders, fetchProducts, removeOrder } from '../Actions'
+import { fetchOrders, fetchProducts, removeOrder, loadingState } from '../Actions'
 import './cart.css';
 import Nav from './Nav';
 import { gsap } from "gsap";
 import { Image, Transformation, CloudinaryContext } from 'cloudinary-react';
 
-const Cart = ({ currentUser, cart, userTest = false, cartTest, productsTest = false, products, loading, loadingTest = false }) => {
+const Cart = ({ currentUser, cart, userTest = false, cartTest, productsTest = false, products, loading, loadingTest = true }) => {
   const [total, setTotal] = useState(0)
   const [imgID, setImgID] = useState(null)
   const dispatch = useDispatch()
-  if (!loadingTest) { loading = loadingTest }
+  // if (!loadingTest) { loading = loadingTest }
   if (cartTest) { cart = cartTest }
   if (productsTest) { products = productsTest }
   useEffect(() => {
     if (!userTest) {
-      dispatch(fetchOrders(currentUser.id))
       dispatch(fetchProducts())
+      dispatch(fetchOrders(currentUser.id))
       if (currentUser && currentUser.image !== null) {
         setImgID(`Vegan-Market/${currentUser.image.match(/[A-Za-z0-9]{20,}(?=(\.jpg|.png|.gif))/gi)[0]}`)
       } else {

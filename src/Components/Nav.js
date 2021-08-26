@@ -18,7 +18,7 @@ import DelayLink from './DelayLink'
 import { gsap } from "gsap";
 import { Image, Transformation, CloudinaryContext } from 'cloudinary-react';
 
-const Nav = ({ user, userTest }) => {
+const Nav = ({ user, userTest, loading }) => {
   const dispatch = useDispatch()
   const [username, setUsername] = useState(false)
   const [imgID, setImgID] = useState(null)
@@ -27,17 +27,19 @@ const Nav = ({ user, userTest }) => {
   const navbarRef = useRef(null)
   const iconsRef = useRef(null)
   useEffect(() => {
-    if (!localStorage.getItem('token')) {
-      dispatch(logIn(userTest))
+    if (window.innerWidth > 600) {
+      gsap.from(navbarRef.current, { duration: 1, y: -500, ease: "power4.out" })
+      gsap.from(iconsRef.current, { duration: 1.2, y: -500, ease: "expo.easeOut" })
     }
+  }, [])
+  useEffect(() => {
+    // if (!localStorage.getItem('token')) {
+    //   dispatch(logIn(userTest))
+    // }
     if (user && user.image !== null) {
       setImgID(`Vegan-Market/${user.image.match(/[A-Za-z0-9]{20,}(?=(\.jpg|.png|.gif))/gi)[0]}.png`)
     } else {
       setImgID('Vegan-Market/placeholder_bzklm5.png')
-    }
-    if (window.innerWidth > 600) {
-      gsap.from(navbarRef.current, { duration: 1, y: -500, ease: "power4.out" })
-      gsap.from(iconsRef.current, { duration: 1.2, y: -500, ease: "expo.easeOut" })
     }
     if (user !== '') {
       let arr = user.name.split(' ')
@@ -52,7 +54,7 @@ const Nav = ({ user, userTest }) => {
       }
     }, 3000)
     return () => clearInterval(int)
-  }, [])
+  }, [loading])
   return (
     <div className='nav-flex' ref={navbarRef}>
       <div>
@@ -89,5 +91,6 @@ const Nav = ({ user, userTest }) => {
 }
 const mapStateToProps = (state) => ({
   user: state.userReducer,
+  loading: state.productsLoadingReducer
 });
 export default connect(mapStateToProps, null)(Nav);
