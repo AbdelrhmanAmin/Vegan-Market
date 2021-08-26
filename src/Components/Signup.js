@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
-import { createUser, userLoadingState, logIn } from '../Actions'
+import { createUser, userLoadingState, logIn, error as error_msg } from '../Actions'
 import { useHistory, Link } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import './signup.css'
@@ -87,7 +87,7 @@ const Signup = ({ error, user_loading, currentUser }) => {
           <main className='sign-container'>
             <section className='top'>
               <div className="title">SIGN UP</div>
-              <span className='redirect'>Already have an account? <Link to='/Login'>Login</Link></span>
+              <span className='redirect'>Already have an account? <Link to='/Login' onClick={() => dispatch(error_msg(''))} >Login</Link></span>
             </section>
             <section className="form-container">
               <div className="login">
