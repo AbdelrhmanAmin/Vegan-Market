@@ -57,7 +57,9 @@ function userLoadingReducer(state = loading_user, action) {
 
 function productsLoadingReducer(state = loading_products, action) {
   switch (action.type) {
-    case 'PRODUCTS_SUCCESS':
+    case 'CART_PAGE_SUCCESS':
+      return false
+    case 'CART_SUCCESS':
       return false;
     case 'SET_PRODUCT_LOADING':
       return true;

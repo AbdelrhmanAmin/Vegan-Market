@@ -64,6 +64,9 @@ nav div a {
 .loading_user_gif {
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
 }
 
 .links-container {
@@ -139,7 +142,7 @@ nav div a {
 }
 
 .form fieldset label span {
-  font-size: 10px;
+  color: #b22424;
 }
 
 .form input {

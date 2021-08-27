@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
-import { fetchUser, userLoadingState } from '../Actions'
+import { fetchUser, userLoadingState, error as error_msg } from '../Actions'
 import { useHistory, Link } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
-import { logIn } from '../Actions/index';
+import { logIn, loadingState } from '../Actions/index';
 
 const Login = ({ error = '', user_loading, currentUser }) => {
   const [email, setEmail] = useState('');
@@ -15,6 +15,7 @@ const Login = ({ error = '', user_loading, currentUser }) => {
   useEffect(() => {
     if (token) {
       let temp = decode(token)
+      dispatch(loadingState())
       dispatch(logIn(temp))
     }
   }, [token])
@@ -69,7 +70,7 @@ const Login = ({ error = '', user_loading, currentUser }) => {
             <main className='sign-container'>
               <section className='top'>
                 <div className="title">Login</div>
-                <span className='redirect'>Don't have an account? <Link to='/Signup'>Sign Up</Link></span>
+                <span className='redirect'>Don't have an account? <Link to='/Signup' onClick={() => dispatch(error_msg(''))} >Sign Up</Link></span>
               </section>
               <section className="form-container">
                 <div className="login-inverse">

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { loadingState, logOut, logIn } from '../Actions';
 import { useDispatch, connect } from 'react-redux';
-// import { GoSignOut } from "react-icons/go";
 import { BiExit } from "react-icons/bi";
 import { AiFillShop } from "react-icons/ai";
 import './nav.css';
@@ -14,11 +13,11 @@ import banana from '../assets/logo-banana.png'
 import brocoli from '../assets/logo-brocoli.png'
 import grape from '../assets/logo-grape.png'
 import tomato from '../assets/logo-tomato.png'
-import DelayLink from './DelayLink'
 import { gsap } from "gsap";
 import { Image, Transformation, CloudinaryContext } from 'cloudinary-react';
+import ReactTooltip from 'react-tooltip';
 
-const Nav = ({ user, userTest }) => {
+const Nav = ({ user, userTest, loading }) => {
   const dispatch = useDispatch()
   const [username, setUsername] = useState(false)
   const [imgID, setImgID] = useState(null)
@@ -27,18 +26,22 @@ const Nav = ({ user, userTest }) => {
   const navbarRef = useRef(null)
   const iconsRef = useRef(null)
   useEffect(() => {
-    if (!localStorage.getItem('token')) {
-      dispatch(logIn(userTest))
-    }
     if (user && user.image !== null) {
       setImgID(`Vegan-Market/${user.image.match(/[A-Za-z0-9]{20,}(?=(\.jpg|.png|.gif))/gi)[0]}.png`)
     } else {
-      setImgID('Vegan-Market/placeholder_bzklm5.png')
+      setImgID('Vegan-Market/placeholder_bzklm5.jpg')
     }
+  }, [user.id])
+  useEffect(() => {
     if (window.innerWidth > 600) {
       gsap.from(navbarRef.current, { duration: 1, y: -500, ease: "power4.out" })
       gsap.from(iconsRef.current, { duration: 1.2, y: -500, ease: "expo.easeOut" })
     }
+  }, [])
+  useEffect(() => {
+    // if (!localStorage.getItem('token')) {
+    //   dispatch(logIn(userTest))
+    // }
     if (user !== '') {
       let arr = user.name.split(' ')
       if (arr.length > 1) { setUsername(arr[arr.length - 1]) }
@@ -52,11 +55,12 @@ const Nav = ({ user, userTest }) => {
       }
     }, 3000)
     return () => clearInterval(int)
-  }, [])
+  }, [loading])
   return (
     <div className='nav-flex' ref={navbarRef}>
       <div>
-        <Link to='/' className='logo-container' data-testid='logo'>
+        <ReactTooltip place="bottom" type="warning" effect="solid" />
+        <Link to='/' className='logo-container' data-type='warning' data-tip='Homepage' data-testid='logo'>
           <img src={logo} alt='logo' className='logo l-1' id='logo' />
           <div className='logo-div'>
             <h2>Market</h2>
@@ -66,8 +70,8 @@ const Nav = ({ user, userTest }) => {
       </div>
       <div className='nav-flex-right' ref={iconsRef}>
 
-        <DelayLink className="flex-right-header my-3" delay={500} to='/Cart' onDelayStart={() => dispatch(loadingState())}>
-          <div className="main-username-div" >
+        <Link className="flex-right-header my-3" data-tip='The Cart' data-type='light' to='/Cart' onClick={() => dispatch(loadingState())}>
+          <div className="main-username-div">
             <CloudinaryContext cloudName='abdoamin' >
               <Image publicId={imgID} className='user-icon'>
                 <Transformation height="25" width="25" crop="fill" />
@@ -76,18 +80,21 @@ const Nav = ({ user, userTest }) => {
             </CloudinaryContext>
             <strong className="main-username" data-testid='username'>{username ? username : user.name}</strong>
           </div>
-        </DelayLink>
-        <DelayLink to='Market' delay={500} onDelayStart={() => dispatch(loadingState())}>
-          <AiFillShop color='orange' className='shop-icon' fontSize='2.5rem' data-testid='market' />
-        </DelayLink>
+        </Link>
+        <Link to='/Market' onClick={() => dispatch(loadingState())}>
+          <AiFillShop data-type='light' data-tip='The Market' color='orange' className='shop-icon' fontSize='2.5rem' data-testid='market' />
+        </Link>
         <Link to='/Login' className='sign-out' onClick={() => {
           dispatch(logOut())
-        }}><BiExit color='white' className='out-icon' fontSize='2.5rem' data-testid='logout' /></Link>
+        }}><BiExit data-type='light' data-tip='Logout' color='white' className='out-icon' fontSize='2.5rem' data-testid='logout' /></Link>
+        <ReactTooltip place="bottom" type="light" effect="solid" />
       </div>
+
     </div>
   )
 }
 const mapStateToProps = (state) => ({
   user: state.userReducer,
+  loading: state.productsLoadingReducer
 });
 export default connect(mapStateToProps, null)(Nav);
