@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import decode from 'jwt-decode';
 import { useDispatch } from 'react-redux';
-import { logIn, loadingState } from '../Actions/index';
+import { logIn, fetchOrders, loadingState } from '../Actions/index';
 
 
 const ProtectedRoute = ({ component: Component }) => {
@@ -14,7 +14,7 @@ const ProtectedRoute = ({ component: Component }) => {
       let temp = decode(token)
       dispatch(loadingState())
       dispatch(logIn(temp))
-
+      dispatch(fetchOrders(temp.id))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

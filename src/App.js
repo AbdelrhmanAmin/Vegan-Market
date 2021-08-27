@@ -20,9 +20,9 @@ function App() {
         <Switch>
           <Route path='/Signup' exact component={Signup} />
           <Route path='/Login' exact component={Login} />
-          <ProtectedRoute path='/' exact component={Home} />
-          <ProtectedRoute path='/Market' component={Market} />
-          <ProtectedRoute path='/Cart' component={Cart} />
+          <ProtectedRoute exact path='/' component={Home} />
+          <ProtectedRoute exact path='/Market' component={Market} />
+          <ProtectedRoute exact path='/Cart' component={Cart} />
         </Switch>
       </Router>
     </div>

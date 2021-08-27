@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
-import { fetchOrders, fetchProducts, removeOrder, loadingState } from '../Actions'
+import { fetchOrders, fetchProducts, removeOrder, cartLoadingState } from '../Actions'
 import './cart.css';
 import Nav from './Nav';
 import { gsap } from "gsap";
@@ -11,19 +11,27 @@ const Cart = ({ currentUser, cart, userTest = false, cartTest, productsTest = fa
   const [imgID, setImgID] = useState(null)
   const dispatch = useDispatch()
   // if (!loadingTest) { loading = loadingTest }
-  if (cartTest) { cart = cartTest }
-  if (productsTest) { products = productsTest }
+  // if (cartTest) { cart = cartTest }
+  // if (productsTest) { products = productsTest }
+
   useEffect(() => {
-    if (!userTest) {
-      dispatch(fetchProducts())
-      dispatch(fetchOrders(currentUser.id))
-      if (currentUser && currentUser.image !== null) {
-        setImgID(`Vegan-Market/${currentUser.image.match(/[A-Za-z0-9]{20,}(?=(\.jpg|.png|.gif))/gi)[0]}`)
-      } else {
-        setImgID('Vegan-Market/placeholder_bzklm5')
-      }
-    }
     setTotal(cart.reduce((sum, p) => { return sum + p.product_price }, 0))
+    if (currentUser && currentUser.image !== null) {
+      setImgID(`Vegan-Market/${currentUser.image.match(/[A-Za-z0-9]{20,}(?=(\.jpg|.png|.gif))/gi)[0]}`)
+    } else {
+      setImgID('Vegan-Market/placeholder_bzklm5')
+    }
+    dispatch(cartLoadingState())
+  }, [])
+
+  useEffect(() => {
+    setTotal(cart.reduce((sum, p) => { return sum + p.product_price }, 0))
+    if (currentUser && currentUser.image !== null) {
+      setImgID(`Vegan-Market/${currentUser.image.match(/[A-Za-z0-9]{20,}(?=(\.jpg|.png|.gif))/gi)[0]}`)
+    } else {
+      setImgID('Vegan-Market/placeholder_bzklm5')
+    }
+    dispatch(cartLoadingState())
     if (!loading) {
       gsap.from('.box', {
         duration: 2,
@@ -42,7 +50,6 @@ const Cart = ({ currentUser, cart, userTest = false, cartTest, productsTest = fa
         force3D: true
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading])
   return (
     <div>

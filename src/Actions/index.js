@@ -30,6 +30,11 @@ export const productSuccess = (products) => ({
 export const loadingState = () => ({
   type: 'SET_PRODUCT_LOADING',
 })
+
+export const cartLoadingState = () => ({
+  type: "CART_PAGE_SUCCESS"
+})
+
 export const userLoadingState = () => ({
   type: 'SET_USER_LOADING',
 })
@@ -45,7 +50,6 @@ export const createOrder = (productId, productName, productPrice, userId, produc
 export const fetchOrders = (userId) => (dispatch) => {
   fetch(`${API}orders`).then((res) => res.json())
     .then((orders) => {
-      console.log(orders)
       let ordered = []
       for (let order of orders) {
         if (order.user_id === userId) {

@@ -81,7 +81,7 @@ const Nav = ({ user, userTest, loading }) => {
             <strong className="main-username" data-testid='username'>{username ? username : user.name}</strong>
           </div>
         </Link>
-        <Link to='Market' onClick={() => dispatch(loadingState())}>
+        <Link to='/Market' onClick={() => dispatch(loadingState())}>
           <AiFillShop data-type='light' data-tip='The Market' color='orange' className='shop-icon' fontSize='2.5rem' data-testid='market' />
         </Link>
         <Link to='/Login' className='sign-out' onClick={() => {
