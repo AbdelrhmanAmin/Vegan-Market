@@ -2,8 +2,9 @@
 
 > An E-commerce website where you can buy healthy vegan food
 
-- I used Ruby on Rails as the backend to build the database and to create a REST API along with implementing other features.
+## Note: Some features are still on progress, this project is still a beta version 🙂
 
+- I used Ruby on Rails as the backend to build the database and to create a REST API along with implementing other features.
 - I used ReactJS to fetch and render the data.
 - I used React-Redux as a state management tool.
 - I used React-Router to create single page application and smooth navigation.
