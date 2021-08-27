@@ -64,6 +64,9 @@ nav div a {
 .loading_user_gif {
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
 }
 
 .links-container {
