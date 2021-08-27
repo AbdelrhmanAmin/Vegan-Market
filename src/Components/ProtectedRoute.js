@@ -12,9 +12,9 @@ const ProtectedRoute = ({ component: Component }) => {
     console.log('hello there')
     if (token) {
       let temp = decode(token)
-      dispatch(loadingState())
       dispatch(logIn(temp))
       dispatch(fetchOrders(temp.id))
+      dispatch(loadingState())
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

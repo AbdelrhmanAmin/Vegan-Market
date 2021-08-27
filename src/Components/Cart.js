@@ -5,15 +5,51 @@ import './cart.css';
 import Nav from './Nav';
 import { gsap } from "gsap";
 import { Image, Transformation, CloudinaryContext } from 'cloudinary-react';
+import { BsFillPlusCircleFill, BsDashCircleFill } from "react-icons/bs";
 
 const Cart = ({ currentUser, cart, userTest = false, cartTest, productsTest = false, products, loading, loadingTest = true }) => {
   const [total, setTotal] = useState(0)
+  const [quantity, setQuantity] = useState(1)
   const [imgID, setImgID] = useState(null)
   const dispatch = useDispatch()
   // if (!loadingTest) { loading = loadingTest }
   // if (cartTest) { cart = cartTest }
   // if (productsTest) { products = productsTest }
-
+  const handleIncrease = (e, price) => {
+    gsap.from(e.target, {
+      scale: 1.1,
+      color: '#383838',
+      ease: 'power4.out'
+    })
+    gsap.to(e.target, {
+      scale: 1,
+      color: '#42ef23',
+      ease: 'power4.out'
+    })
+    setTotal(total + price)
+    setQuantity(quantity + 1)
+  }
+  const handleDecrease = (e, price, orderID) => {
+    gsap.from(e.target, {
+      scale: 0.8,
+      color: '#383838',
+      ease: 'power4.out'
+    })
+    gsap.to(e.target, {
+      scale: 1,
+      color: '#fa000c',
+      ease: 'power4.out'
+    })
+    if (quantity === 0) {
+      removeOrder(orderID)
+      gsap.to(document.getElementById(orderID), { duration: 1, ease: "power4.out", rotation: 360, scale: 0 })
+      setTimeout(() => { document.getElementById(orderID).remove() }, 800)
+    }
+    if (quantity > 0) {
+      setQuantity(quantity - 1)
+      setTotal(total - price)
+    }
+  }
   useEffect(() => {
     setTotal(cart.reduce((sum, p) => { return sum + p.product_price }, 0))
     if (currentUser && currentUser.image !== null) {
@@ -74,6 +110,7 @@ const Cart = ({ currentUser, cart, userTest = false, cartTest, productsTest = fa
                   <div className='order-container' data-testid={`order-container${order.id}`} id={order.id} key={order.id} >
                     <div className='info-div'>
                       <h3 data-testid={`name${order.id}`}>{order.product_name}</h3>
+
                       <div className='remove-container'>
                         <div className='empty-bg'></div>
                         <button className='remove' data-testid={`remove${order.id}`} onClick={() => {
@@ -90,6 +127,11 @@ const Cart = ({ currentUser, cart, userTest = false, cartTest, productsTest = fa
                       <p className='price' data-testid={`price${order.id}`}>{order.product_price}$</p>
                       <div className='order-img-div'>
                         <img src={order.product_URL} alt='URL' width='250' height='250' />
+                      </div>
+                      <div className='buttons-container'>
+                        <BsDashCircleFill fontSize='1.8rem' className='removeBtn' onClick={(e) => handleDecrease(e, order.product_price, order.id)} />
+                        <strong>{quantity}</strong>
+                        <BsFillPlusCircleFill fontSize='1.8rem' className='addBtn' onClick={(e) => handleIncrease(e, order.product_price)} />
                       </div>
                     </div>
                   </div>
